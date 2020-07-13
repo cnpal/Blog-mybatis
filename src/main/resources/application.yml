@@ -6,6 +6,7 @@ spring:
   messages:
     basename: i18n/messages
 
+
 comment.avatar: /images/avatar.png
 
 mybatis:
