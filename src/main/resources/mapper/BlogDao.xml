@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pal.blog.dao.BlogDao">
+
+    <insert id="saveBlog" parameterType="com.pal.blog.entity.Blog">
+        insert into t_blog (title, content, first_picture, flag,
+                                   views, comment_count, appreciation, share_statement, commentabled, published,
+                                   recommend, create_time, update_time, type_id, user_id, description)
+        values (#{title},#{content},#{firstPicture},#{flag},#{views},#{commentCount},#{appreciation},
+                #{shareStatement},#{commentabled},#{published},#{recommend},#{createTime},
+                #{updateTime},#{typeId},#{userId},#{description});
+    </insert>
+
+    <!--查询文章管理列表多对一配置-->
+    <resultMap id="blog" type="com.pal.blog.queryvo.BlogQuery">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="recommend" column="recommend"/>
+        <result property="published" column="published"/>
+        <result property="typeId" column="type_id"/>
+        <association property="type" javaType="com.pal.blog.entity.Type">
+            <id property="id" column="id"/>
+            <result property="name" column="name"/>
+        </association>
+    </resultMap>
+    <!--查询文章管理列表-->
+    <select id="getAllBlogQuery" resultMap="blog">
+        select b.id,b.title,b.update_time,b.recommend,b.published,b.type_id,t.id,t.name
+        from t_blog b left outer join
+             t_type t on b.type_id = t.id order by b.update_time desc
+    </select>
+    <!--删除文章-->
+    <delete id="deleteBlog">
+        delete from t_blog where id = #{id}
+    </delete>
+
+    <!--查询编辑修改的文章-->
+    <select id="getBlogById" resultType="com.pal.blog.queryvo.ShowBlog">
+        select b.id,b.flag,b.title,b.content,b.type_id,
+               b.first_picture,b.description,b.recommend,b.published,b.share_statement,
+               b.appreciation,b.commentabled from t_blog b  where  b.id = #{id};
+    </select>
+
+    <!--编辑修改文章-->
+    <update id="updateBlog" parameterType="com.pal.blog.queryvo.ShowBlog">
+        update t_blog set published = #{published},flag = #{flag} ,
+                                 title = #{title}, content = #{content}, type_id = #{typeId},
+                                 first_picture = #{firstPicture} , description = #{description} , recommend = #{recommend} ,
+                                 share_statement = #{shareStatement}, appreciation = #{appreciation},
+                                 commentabled = #{commentabled} ,update_time = #{updateTime} where id = #{id};
+    </update>
+
+    <!--搜索博客管理列表-->
+    <select id="searchByTitleAndType" parameterType="com.pal.blog.queryvo.SearchBlog" resultMap="blog">
+        <bind name="pattern" value="'%' + title + '%'" />
+        select b.id,b.title,b.type_id,t.id,t.name,b.recommend,b.published,b.update_time from t_blog b ,t_type t
+        <where>
+            <if test="1 == 1">
+                b.type_id = t.id
+            </if>
+            <if test="typeId != null">
+                and b.type_id = #{typeId}
+            </if>
+            <if test="title != null">
+                and b.title like #{pattern}
+            </if>
+        </where>
+    </select>
+</mapper>
