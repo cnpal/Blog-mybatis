@@ -10,7 +10,13 @@ spring:
 comment.avatar: /images/avatar.png
 
 mybatis:
-  type-aliases-package: com.star.entity
+  type-aliases-package: com.pal.blog.entity
   mapper-locations: classpath:mapper/*.xml
   configuration:
     map-underscore-to-camel-case: true
+
+pagehelper:
+  helper-dialect: mysql
+  params: count=countSql
+  reasonable: true
+  support-methods-arguments: true

@@ -15,19 +15,19 @@
   <div class="ui container">
     <div class="ui inverted secondary stackable menu">
       <h2 class="ui olive header item" style="font-family: STSong">管理后台</h2>
-      <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i>文章管理</a>
-      <a href="#" class="active m-item item m-mobile-hide"><i class="clone outline icon"></i>分类管理</a>
-      <a href="#" class="m-item item m-mobile-hide"><i class="pencil alternate icon"></i>友链管理</a>
-      <a href="#" class=" m-item item m-mobile-hide"><i class="image icon"></i>相册管理</a>
+      <a href="#" th:href="@{/admin/blogs}" class="m-item item m-mobile-hide"><i class="home icon"></i>文章管理</a>
+      <a href="#" th:href="@{/admin/types}" class="active m-item item m-mobile-hide"><i class="clone outline icon"></i>分类管理</a>
+      <a href="#" th:href="@{/admin/friendlinks}" class="m-item item m-mobile-hide"><i class="pencil alternate icon"></i>友链管理</a>
+      <a href="#" th:href="@{/admin/pictures}" class=" m-item item m-mobile-hide"><i class="image icon"></i>相册管理</a>
       <div class="right m-item m-mobile-hide menu">
         <div class="ui dropdown  item">
           <div class="text">
-            <img class="ui avatar image" src="../../static/images/me.jpg">
-            <span >oneStar</span>
+            <img class="ui avatar image" src="../../static/images/me.jpg" th:src="@{${session.user.avatar}}">
+            <span >LittleStar</span>
           </div>
           <i class="dropdown icon"></i>
           <div class="menu">
-            <a href="#" class="item">注销</a>
+            <a href="#" th:href="@{/admin/logout}" class="item">注销</a>
           </div>
         </div>
       </div>
@@ -42,8 +42,8 @@
   <div class="ui attached pointing menu">
     <div class="ui container">
       <div class="right menu">
-        <a href="#" class="item">新增</a>
-        <a href="#" class="teal active item">列表</a>
+        <a href="#" th:href="@{/admin/types/input}" class="item">新增</a>
+        <a href="#" th:href="@{/admin/types}" class="teal active item">列表</a>
       </div>
     </div>
   </div>
@@ -56,9 +56,9 @@
   <!--中间内容-->
   <div  class="m-padded-tb-big">
     <div class="ui container">
-      <div class="ui success message">
+      <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
         <i class="close icon"></i>
-        <div class="">提示：操作成功！</div>
+        <div class="" th:text="|提示： ${message}">提示：操作成功！</div>
       </div>
       <table class="ui compact teal table">
         <thead>
@@ -69,12 +69,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr align="center">
-            <td >1</td>
-            <td>我的故事</td>
+          <tr align="center" th:each="type,iterStat : ${pageInfo.list}">
+            <td th:text="${iterStat.count}">1</td>
+            <td th:text="${type.name}">我的故事</td>
             <td>
-              <a href="#" class="ui mini teal basic button">编辑</a>
-              <a href="#"  onclick="return confirm('确定要删除该分类吗？三思啊! 删了可就没了！')" class="ui mini red basic button">删除</a>
+              <a href="#"  th:href="@{/admin/types/{id}/input(id=${type.id})}" class="ui mini teal basic button">编辑</a>
+              <a href="#"  th:href="@{/admin/types/{id}/delete(id=${type.id})}" onclick="return confirm('确定要删除该分类吗？三思啊! 删了可就没了！')" class="ui mini red basic button">删除</a>
             </td>
           </tr>
         </tbody>
@@ -83,20 +83,20 @@
             <th colspan="6" >
               <div class="ui inverted divided stackable grid">
                 <div class="three wide column" align="center">
-                  <a class="item">上一页</a>
+                  <a class="item" th:href="@{/admin/types(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}" th:unless="${pageInfo.isFirstPage}">上一页</a>
                 </div>
 
                 <div class="ten wide column" align="center">
-                  <p>第 <span></span> 页，共 <span></span> 页，有 <span></span> 个分类</p>
+                  <p>第 <span th:text="${pageInfo.pageNum}"></span> 页，共 <span th:text="${pageInfo.pages}"></span> 页，有 <span th:text="${pageInfo.total}"></span> 个分类</p>
                 </div>
 
                 <div class="three wide column" align="center">
-                  <a class="item">下一页</a>
+                  <a class="item" th:href="@{/admin/types(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}" th:unless="${pageInfo.isLastPage}">下一页</a>
                 </div>
               </div>
               <div align="center">
-              <a href="#">
-                <button type="button" class="ui teal button m-mobile-wide m-margin-top"><i class="pencil icon"></i>新增</button>
+              <a href="#" th:href="@{/admin/types/input}">
+                <button type="button" class="ui mini right floated teal basic button m-mobile-wide m-margin-top"><i class="pencil icon"></i>新增</button>
               </a>
               </div>
             </th>
@@ -122,8 +122,8 @@
       <div class="four wide column">
         <div style="font-size: large;font-weight: bold" class="ui inverted m-text-thin m-text-spaced m-margin-top-max" >联系我</div>
         <div class="ui inverted link list">
-          <div href="#" class="m-text-thin">Email：onestarlr@hotmail.com</div>
-          <div href="#" class="m-text-thin">QQ：316392836</div>
+          <div href="#" class="m-text-thin">Email： 925978482@qq.com</div>
+          <div href="#" class="m-text-thin">QQ：925978482</div>
         </div>
       </div>
 
@@ -151,18 +151,18 @@
         <div style="font-size: large;font-weight: bold" class="ui inverted  m-text-thin m-text-spaced m-margin-top">客栈信息</div>
         <!--<p id="htmer_time" class="item m-text-thin"></p>-->
         <div id="blog-message">
-          <div class="ui inverted link list" style="align-content: center;margin-top: 10px">
+          <div class="ui inverted link list" style="align-content: center;margin-top: 10px" th:fragment="blogMessage">
             <div class="m-text-thin" style="text-align: left;margin-left: 75px;">
-              文章总数： <h2 class="ui orange header m-inline-block m-margin-top-null" style="font-size:medium;"> 14 </h2> 篇
+              文章总数： <h2 class="ui orange header m-inline-block m-margin-top-null" style="font-size:medium;" th:text="${blogTotal}"> 14 </h2> 篇
             </div>
             <div class="m-text-thin" style="text-align: left;margin-left: 75px">
-              访问总数： <h2 class="ui orange header m-inline-block m-margin-top-null" style="font-size:medium;"> 14 </h2> 次
+              访问总数： <h2 class="ui orange header m-inline-block m-margin-top-null" style="font-size:medium;" th:text="${blogViewTotal}"> 14 </h2> 次
             </div>
             <div class="m-text-thin" style="text-align: left;margin-left: 75px">
-              评论总数： <h2 class="ui orange header m-inline-block m-margin-top-null" style="font-size:medium;"> 14 </h2> 条
+              评论总数： <h2 class="ui orange header m-inline-block m-margin-top-null" style="font-size:medium;" th:text="${blogCommentTotal}"> 14 </h2> 条
             </div>
             <div class="m-text-thin" style="text-align: left;margin-left: 75px">
-              留言总数： <h2 class="ui orange header m-inline-block m-margin-top-null" style="font-size:medium;"> 14 </h2> 条
+              留言总数： <h2 class="ui orange header m-inline-block m-margin-top-null" style="font-size:medium;" th:text="${blogMessageTotal}"> 14 </h2> 条
             </div>
           </div>
         </div>
@@ -170,7 +170,6 @@
     </div>
     <div class="ui inverted section divider"></div>
     <div style="color: #F08047;margin-top: -18px" class="ui inverted m-text-thin m-text-spaced">我的客栈已营业：<span id="htmer_time" class="item m-text-thin"></span> (*๓´╰╯`๓)</div>
-    <a rel="nofollow" href="http://www.beian.miit.gov.cn" target="_blank">赣ICP备20004408号-1</a>
   </div>
   </div>
 
@@ -212,7 +211,7 @@
       }
       function setTime() {
           /*此处为网站的创建时间*/
-          var create_time = Math.round(new Date(Date.UTC(2020, 01, 25, 15, 15, 15)).getTime() / 1000);
+          var create_time = Math.round(new Date(Date.UTC(2020, 7, 7, 15, 15, 15)).getTime() / 1000);
           var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
           currentTime = secondToDate((timestamp - create_time));
           currentTimeHtml = currentTime[0] + '年' + currentTime[1] + '天'
