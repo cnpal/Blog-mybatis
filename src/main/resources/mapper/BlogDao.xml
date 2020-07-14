@@ -67,4 +67,56 @@
             </if>
         </where>
     </select>
+
+    <!--查询首页最新博客列表信息-->
+    <resultMap id="firstPageBlog" type="com.pal.blog.queryvo.FirstPageBlog">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="firstPicture" column="first_picture"/>
+        <result property="views" column="views"/>
+        <result property="commentCount" column="comment_count"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="description" column="description"/>
+        <result property="typeName" column="name"/>
+        <result property="nickname" column="nickname"/>
+        <result property="avatar" column="avatar"/>
+    </resultMap>
+    <select id="getFirstPageBlog" resultMap="firstPageBlog">
+        select b.id,b.title,b.first_picture, b.views, b.comment_count,b.create_time,b.update_time,b.description,
+               t.name ,
+               u.nickname, u.avatar
+        from t_blog b, t_type t,t_user u
+        where b.type_id = t.id and  u.id = b.user_id order by b.create_time desc
+    </select>
+
+    <!--查询推荐文章-->
+    <select id="getAllRecommendBlog" resultType="com.pal.blog.queryvo.RecommendBlog">
+        select * from t_blog where t_blog.recommend = true order by t_blog.create_time desc limit 4;
+    </select>
+
+    <!--搜索文章-->
+    <select id="getSearchBlog" resultMap="firstPageBlog">
+        <bind name="pattern" value="'%' + query + '%'" />
+        select b.id,b.title,b.first_picture, b.views,b.comment_count,b.update_time,b.description,
+        t.name ,
+        u.nickname, u.avatar
+        from t_blog b, t_type t,t_user u
+        where b.type_id = t.id and  u.id = b.user_id and (b.title like #{pattern} or b.content like  #{pattern})
+        order by b.update_time desc
+    </select>
+
+    <!--统计博客信息-->
+    <select id="getBlogTotal" resultType="Integer">
+        select count(*) from t_blog
+    </select>
+    <select id="getBlogViewTotal" resultType="Integer">
+        select coalesce (sum(views),0) from t_blog
+    </select>
+    <select id="getBlogCommentTotal" resultType="Integer">
+        select count(*) from t_comment
+    </select>
+    <select id="getBlogMessageTotal" resultType="Integer">
+        select count(*) from t_message
+    </select>
 </mapper>

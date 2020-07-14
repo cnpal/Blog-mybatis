@@ -2,9 +2,7 @@ package com.pal.blog.service.impl;
 
 import com.pal.blog.dao.BlogDao;
 import com.pal.blog.entity.Blog;
-import com.pal.blog.queryvo.BlogQuery;
-import com.pal.blog.queryvo.SearchBlog;
-import com.pal.blog.queryvo.ShowBlog;
+import com.pal.blog.queryvo.*;
 import com.pal.blog.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -60,5 +58,48 @@ public class BlogServiceImpl implements BlogService {
     public int updateBlog(ShowBlog showBlog) {
         showBlog.setUpdateTime(new Date());
         return blogDao.updateBlog(showBlog);
+    }
+
+    //查询首页最新博客列表信息
+    @Override
+    public List<FirstPageBlog> getAllFirstPageBlog() {
+        return blogDao.getFirstPageBlog();
+    }
+
+    //查询首页最新推荐信息
+    @Override
+    public List<RecommendBlog> getRecommendedBlog() {
+        List<RecommendBlog> allRecommendBlog = blogDao.getAllRecommendBlog();
+        return allRecommendBlog;
+    }
+
+    //搜索博客列表
+    @Override
+    public List<FirstPageBlog> getSearchBlog(String query) {
+        return blogDao.getSearchBlog(query);
+    }
+
+    //统计博客总数
+    @Override
+    public Integer getBlogTotal() {
+        return blogDao.getBlogTotal();
+    }
+
+    //统计访问总数
+    @Override
+    public Integer getBlogViewTotal() {
+        return blogDao.getBlogViewTotal();
+    }
+
+    //统计评论总数
+    @Override
+    public Integer getBlogCommentTotal() {
+        return blogDao.getBlogCommentTotal();
+    }
+
+    //统计留言总数
+    @Override
+    public Integer getBlogMessageTotal() {
+        return blogDao.getBlogMessageTotal();
     }
 }
