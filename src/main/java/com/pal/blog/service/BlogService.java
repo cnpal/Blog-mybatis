@@ -43,4 +43,9 @@ public interface BlogService {
 
     //统计留言总数
     Integer getBlogMessageTotal();
+    //查询博客详情
+    DetailedBlog getDetailedBlog(Long id);
+
+    //根据TypeId查询博客列表，显示在分类页面
+    List<FirstPageBlog> getByTypeId(Long typeId);
 }

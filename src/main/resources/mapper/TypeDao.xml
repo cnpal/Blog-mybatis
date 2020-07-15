@@ -32,4 +32,19 @@
         delete from t_type where id = #{id}
     </delete>
 
+    <resultMap id="type" type="com.pal.blog.entity.Type">
+        <id property="id" column="tid"/>
+        <result property="name" column="name"/>
+        <collection property="blogs" ofType="com.pal.blog.entity.Blog">
+            <id property="id" column="bid"/>
+            <result property="title" column="title"/>
+            <result property="typeId" column="type_id"/>
+        </collection>
+    </resultMap>
+    <!--查询分类-->
+    <select id="getAllTypeAndBlog" resultMap="type">
+        select t.id tid, t.name, b.id bid, b.title,b.type_id
+        from t_type t,t_blog b
+        where t.id = b.type_id
+    </select>
 </mapper>

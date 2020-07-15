@@ -8,6 +8,7 @@ spring:
 
 
 comment.avatar: /images/avatar.png
+message.avatar: /images/avatar.png
 
 mybatis:
   type-aliases-package: com.pal.blog.entity

@@ -1,0 +1,1288 @@
+2020-07-14 11:44:21.425  INFO 10244 --- [restartedMain] com.pal.blog.BlogApplication             : Starting BlogApplication on LAPTOP-3TMQ3A72 with PID 10244 (D:\panal\jetbrains\apps\IDEA-U\workspace\blog-mybatis\target\classes started by panal in D:\panal\jetbrains\apps\IDEA-U\workspace\blog-mybatis)
+2020-07-14 11:44:21.429 DEBUG 10244 --- [restartedMain] com.pal.blog.BlogApplication             : Running with Spring Boot v2.2.8.RELEASE, Spring v5.2.7.RELEASE
+2020-07-14 11:44:21.430  INFO 10244 --- [restartedMain] com.pal.blog.BlogApplication             : The following profiles are active: dev
+2020-07-14 11:44:21.515  INFO 10244 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-07-14 11:44:21.516  INFO 10244 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-07-14 11:44:23.244  INFO 10244 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+2020-07-14 11:44:23.253  INFO 10244 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-07-14 11:44:23.254  INFO 10244 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.36]
+2020-07-14 11:44:23.347  INFO 10244 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-07-14 11:44:23.347  INFO 10244 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1831 ms
+2020-07-14 11:44:24.438  INFO 10244 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-07-14 11:44:24.537  INFO 10244 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-07-14 11:44:25.195  INFO 10244 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-07-14 11:44:25.250  INFO 10244 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path ''
+2020-07-14 11:44:25.250  INFO 10244 --- [restartedMain] com.pal.blog.BlogApplication             : Started BlogApplication in 4.834 seconds (JVM running for 6.586)
+2020-07-14 11:44:39.414  INFO 10244 --- [http-nio-80-exec-1] o.apache.tomcat.util.http.parser.Cookie  : A cookie header was received [1594595971] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+2020-07-14 11:44:39.428  INFO 10244 --- [http-nio-80-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-14 11:44:39.428  INFO 10244 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-07-14 11:44:39.436  INFO 10244 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
+2020-07-14 11:44:39.463  INFO 10244 --- [http-nio-80-exec-1] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.index', args=[{}, 1, {}]}
+2020-07-14 11:44:39.505  INFO 10244 --- [http-nio-80-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-07-14 11:44:39.966  INFO 10244 --- [http-nio-80-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-07-14 11:44:39.972 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.d.BlogDao.getFirstPageBlog_COUNT   : ==>  Preparing: SELECT count(0) FROM t_blog b, t_type t, t_user u WHERE b.type_id = t.id AND u.id = b.user_id
+2020-07-14 11:44:40.004 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.d.BlogDao.getFirstPageBlog_COUNT   : ==> Parameters: 
+2020-07-14 11:44:40.419 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.d.BlogDao.getFirstPageBlog_COUNT   : <==      Total: 1
+2020-07-14 11:44:40.422 DEBUG 10244 --- [http-nio-80-exec-1] c.pal.blog.dao.BlogDao.getFirstPageBlog  : ==>  Preparing: select b.id,b.title,b.first_picture, b.views, b.comment_count,b.create_time,b.update_time,b.description, t.name , u.nickname, u.avatar from t_blog b, t_type t,t_user u where b.type_id = t.id and u.id = b.user_id order by b.create_time desc LIMIT ?
+2020-07-14 11:44:40.423 DEBUG 10244 --- [http-nio-80-exec-1] c.pal.blog.dao.BlogDao.getFirstPageBlog  : ==> Parameters: 10(Integer)
+2020-07-14 11:44:40.425 DEBUG 10244 --- [http-nio-80-exec-1] c.pal.blog.dao.BlogDao.getFirstPageBlog  : <==      Total: 1
+2020-07-14 11:44:40.427 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.dao.BlogDao.getAllRecommendBlog    : ==>  Preparing: select * from t_blog where t_blog.recommend = true order by t_blog.create_time desc limit 4;
+2020-07-14 11:44:40.427 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.dao.BlogDao.getAllRecommendBlog    : ==> Parameters: 
+2020-07-14 11:44:40.432 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.dao.BlogDao.getAllRecommendBlog    : <==      Total: 1
+2020-07-14 11:44:40.433  INFO 10244 --- [http-nio-80-exec-1] com.pal.blog.aspect.LogAspect            : Result : index
+2020-07-14 11:44:40.942  INFO 10244 --- [http-nio-80-exec-1] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/footer/blogmessage', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.blogMessage', args=[{}]}
+2020-07-14 11:44:40.944 DEBUG 10244 --- [http-nio-80-exec-1] com.pal.blog.dao.BlogDao.getBlogTotal    : ==>  Preparing: select count(*) from t_blog
+2020-07-14 11:44:40.944 DEBUG 10244 --- [http-nio-80-exec-1] com.pal.blog.dao.BlogDao.getBlogTotal    : ==> Parameters: 
+2020-07-14 11:44:41.067 DEBUG 10244 --- [http-nio-80-exec-1] com.pal.blog.dao.BlogDao.getBlogTotal    : <==      Total: 1
+2020-07-14 11:44:41.067 DEBUG 10244 --- [http-nio-80-exec-1] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==>  Preparing: select coalesce (sum(views),0) from t_blog
+2020-07-14 11:44:41.067 DEBUG 10244 --- [http-nio-80-exec-1] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==> Parameters: 
+2020-07-14 11:44:41.091 DEBUG 10244 --- [http-nio-80-exec-1] c.pal.blog.dao.BlogDao.getBlogViewTotal  : <==      Total: 1
+2020-07-14 11:44:41.092 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==>  Preparing: select count(*) from t_comment
+2020-07-14 11:44:41.093 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==> Parameters: 
+2020-07-14 11:44:41.147 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.dao.BlogDao.getBlogCommentTotal    : <==      Total: 1
+2020-07-14 11:44:41.148 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==>  Preparing: select count(*) from t_message
+2020-07-14 11:44:41.148 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==> Parameters: 
+2020-07-14 11:44:41.185 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.dao.BlogDao.getBlogMessageTotal    : <==      Total: 1
+2020-07-14 11:44:41.185  INFO 10244 --- [http-nio-80-exec-1] com.pal.blog.aspect.LogAspect            : Result : index :: blogMessage
+2020-07-14 11:44:48.459  INFO 10244 --- [http-nio-80-exec-4] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/blog/63', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.blog', args=[63, {}]}
+2020-07-14 11:44:48.463 DEBUG 10244 --- [http-nio-80-exec-4] c.pal.blog.dao.BlogDao.getDetailedBlog   : ==>  Preparing: select b.id bid,b.first_picture,b.flag,b.title,b.content,b.views,b.comment_count,b.update_time,b.commentabled,b.share_statement,b.appreciation, u.nickname,u.avatar,t.name from t_blog b,t_user u, t_type t where b.user_id = u.id and b.type_id = t.id and b.id = ?
+2020-07-14 11:44:48.464 DEBUG 10244 --- [http-nio-80-exec-4] c.pal.blog.dao.BlogDao.getDetailedBlog   : ==> Parameters: 63(Long)
+2020-07-14 11:44:48.466 DEBUG 10244 --- [http-nio-80-exec-4] c.pal.blog.dao.BlogDao.getDetailedBlog   : <==      Total: 1
+2020-07-14 11:44:48.619 DEBUG 10244 --- [http-nio-80-exec-4] com.pal.blog.dao.BlogDao.updateViews     : ==>  Preparing: update t_blog b set b.views = b.views+1 where b.id = ?
+2020-07-14 11:44:48.619 DEBUG 10244 --- [http-nio-80-exec-4] com.pal.blog.dao.BlogDao.updateViews     : ==> Parameters: 63(Long)
+2020-07-14 11:44:48.958 DEBUG 10244 --- [http-nio-80-exec-4] com.pal.blog.dao.BlogDao.updateViews     : <==    Updates: 1
+2020-07-14 11:44:48.959 DEBUG 10244 --- [http-nio-80-exec-4] c.p.b.dao.BlogDao.getCommentCountById    : ==>  Preparing: update t_blog b set b.comment_count = ( select count(*) from t_comment c where c.blog_id = ? and b.id = ? ) WHERE b.id = ?
+2020-07-14 11:44:48.959 DEBUG 10244 --- [http-nio-80-exec-4] c.p.b.dao.BlogDao.getCommentCountById    : ==> Parameters: 63(Long), 63(Long), 63(Long)
+2020-07-14 11:44:48.999 DEBUG 10244 --- [http-nio-80-exec-4] c.p.b.dao.BlogDao.getCommentCountById    : <==    Updates: 1
+2020-07-14 11:44:48.999  INFO 10244 --- [http-nio-80-exec-4] com.pal.blog.aspect.LogAspect            : Result : blog
+2020-07-14 11:44:49.468  INFO 10244 --- [http-nio-80-exec-4] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/footer/blogmessage', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.blogMessage', args=[{}]}
+2020-07-14 11:44:49.469 DEBUG 10244 --- [http-nio-80-exec-4] com.pal.blog.dao.BlogDao.getBlogTotal    : ==>  Preparing: select count(*) from t_blog
+2020-07-14 11:44:49.469 DEBUG 10244 --- [http-nio-80-exec-4] com.pal.blog.dao.BlogDao.getBlogTotal    : ==> Parameters: 
+2020-07-14 11:44:49.491 DEBUG 10244 --- [http-nio-80-exec-4] com.pal.blog.dao.BlogDao.getBlogTotal    : <==      Total: 1
+2020-07-14 11:44:49.492 DEBUG 10244 --- [http-nio-80-exec-4] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==>  Preparing: select coalesce (sum(views),0) from t_blog
+2020-07-14 11:44:49.492 DEBUG 10244 --- [http-nio-80-exec-4] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==> Parameters: 
+2020-07-14 11:44:49.492 DEBUG 10244 --- [http-nio-80-exec-4] c.pal.blog.dao.BlogDao.getBlogViewTotal  : <==      Total: 1
+2020-07-14 11:44:49.493 DEBUG 10244 --- [http-nio-80-exec-4] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==>  Preparing: select count(*) from t_comment
+2020-07-14 11:44:49.493 DEBUG 10244 --- [http-nio-80-exec-4] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==> Parameters: 
+2020-07-14 11:44:49.493 DEBUG 10244 --- [http-nio-80-exec-4] c.p.b.dao.BlogDao.getBlogCommentTotal    : <==      Total: 1
+2020-07-14 11:44:49.494 DEBUG 10244 --- [http-nio-80-exec-4] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==>  Preparing: select count(*) from t_message
+2020-07-14 11:44:49.494 DEBUG 10244 --- [http-nio-80-exec-4] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==> Parameters: 
+2020-07-14 11:44:49.494 DEBUG 10244 --- [http-nio-80-exec-4] c.p.b.dao.BlogDao.getBlogMessageTotal    : <==      Total: 1
+2020-07-14 11:44:49.495  INFO 10244 --- [http-nio-80-exec-4] com.pal.blog.aspect.LogAspect            : Result : index :: blogMessage
+2020-07-14 11:44:49.587  INFO 10244 --- [http-nio-80-exec-8] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/comments/63', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.CommentController.comments', args=[63, {}]}
+2020-07-14 11:44:49.591 DEBUG 10244 --- [http-nio-80-exec-8] c.p.b.d.C.findByBlogIdParentIdNull       : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 11:44:49.591 DEBUG 10244 --- [http-nio-80-exec-8] c.p.b.d.C.findByBlogIdParentIdNull       : ==> Parameters: 63(Long), -1(Long)
+2020-07-14 11:44:49.603 DEBUG 10244 --- [http-nio-80-exec-8] c.p.b.d.C.findByBlogIdParentIdNull       : <==      Total: 0
+2020-07-14 11:44:49.604  INFO 10244 --- [http-nio-80-exec-8] com.pal.blog.aspect.LogAspect            : Result : blog :: commentList
+2020-07-14 11:45:24.521  INFO 10244 --- [http-nio-80-exec-6] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/comments', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.CommentController.post', args=[Comment{id=null, nickname='cnpal', email='925978482@qq.com', content='测试', avatar='null', createTime=null, blogId=63, parentCommentId=null, adminComment=false, replyComments=[], parentComment=Comment{id=-1, nickname='null', email='null', content='null', avatar='null', createTime=null, blogId=null, parentCommentId=null, adminComment=false, replyComments=[], parentComment=null, parentNickname='null'}, parentNickname='null'}, org.apache.catalina.session.StandardSessionFacade@2982318a, {comment=Comment{id=null, nickname='cnpal', email='925978482@qq.com', content='测试', avatar='null', createTime=null, blogId=63, parentCommentId=null, adminComment=false, replyComments=[], parentComment=Comment{id=-1, nickname='null', email='null', content='null', avatar='null', createTime=null, blogId=null, parentCommentId=null, adminComment=false, replyComments=[], parentComment=null, parentNickname='null'}, parentNickname='null'}, org.springframework.validation.BindingResult.comment=org.springframework.validation.BeanPropertyBindingResult: 0 errors}]}
+2020-07-14 11:45:24.522 DEBUG 10244 --- [http-nio-80-exec-6] com.pal.blog.dao.CommentDao.saveComment  : ==>  Preparing: insert into t_comment (nickname,email,content,avatar,create_time,blog_id,parent_comment_id,admin_comment) values (?,?,?,?,?,?,?,?);
+2020-07-14 11:45:24.524 DEBUG 10244 --- [http-nio-80-exec-6] com.pal.blog.dao.CommentDao.saveComment  : ==> Parameters: cnpal(String), 925978482@qq.com(String), 测试(String), /images/avatar.png(String), 2020-07-14 11:45:24.522(Timestamp), 63(Long), -1(Long), false(Boolean)
+2020-07-14 11:45:24.689 DEBUG 10244 --- [http-nio-80-exec-6] com.pal.blog.dao.CommentDao.saveComment  : <==    Updates: 1
+2020-07-14 11:45:24.689 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.dao.BlogDao.getCommentCountById    : ==>  Preparing: update t_blog b set b.comment_count = ( select count(*) from t_comment c where c.blog_id = ? and b.id = ? ) WHERE b.id = ?
+2020-07-14 11:45:24.689 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.dao.BlogDao.getCommentCountById    : ==> Parameters: 63(Long), 63(Long), 63(Long)
+2020-07-14 11:45:24.782 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.dao.BlogDao.getCommentCountById    : <==    Updates: 1
+2020-07-14 11:45:24.782 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdParentIdNull       : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 11:45:24.782 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdParentIdNull       : ==> Parameters: 63(Long), -1(Long)
+2020-07-14 11:45:24.798 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdParentIdNull       : <==      Total: 1
+2020-07-14 11:45:24.798 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdParentIdNotNull    : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 11:45:24.798 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdParentIdNotNull    : ==> Parameters: 63(Long), 28(Long)
+2020-07-14 11:45:24.798 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdParentIdNotNull    : <==      Total: 0
+2020-07-14 11:45:24.798  INFO 10244 --- [http-nio-80-exec-6] com.pal.blog.aspect.LogAspect            : Result : blog :: commentList
+2020-07-14 11:45:50.572  INFO 10244 --- [http-nio-80-exec-10] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/comments', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.CommentController.post', args=[Comment{id=null, nickname='小白', email='925978482@qq.com', content='你好', avatar='null', createTime=null, blogId=63, parentCommentId=null, adminComment=false, replyComments=[], parentComment=Comment{id=28, nickname='null', email='null', content='null', avatar='null', createTime=null, blogId=null, parentCommentId=null, adminComment=false, replyComments=[], parentComment=null, parentNickname='null'}, parentNickname='null'}, org.apache.catalina.session.StandardSessionFacade@2982318a, {comment=Comment{id=null, nickname='小白', email='925978482@qq.com', content='你好', avatar='null', createTime=null, blogId=63, parentCommentId=null, adminComment=false, replyComments=[], parentComment=Comment{id=28, nickname='null', email='null', content='null', avatar='null', createTime=null, blogId=null, parentCommentId=null, adminComment=false, replyComments=[], parentComment=null, parentNickname='null'}, parentNickname='null'}, org.springframework.validation.BindingResult.comment=org.springframework.validation.BeanPropertyBindingResult: 0 errors}]}
+2020-07-14 11:45:50.573 DEBUG 10244 --- [http-nio-80-exec-10] com.pal.blog.dao.CommentDao.saveComment  : ==>  Preparing: insert into t_comment (nickname,email,content,avatar,create_time,blog_id,parent_comment_id,admin_comment) values (?,?,?,?,?,?,?,?);
+2020-07-14 11:45:50.573 DEBUG 10244 --- [http-nio-80-exec-10] com.pal.blog.dao.CommentDao.saveComment  : ==> Parameters: 小白(String), 925978482@qq.com(String), 你好(String), /images/avatar.png(String), 2020-07-14 11:45:50.573(Timestamp), 63(Long), 28(Long), false(Boolean)
+2020-07-14 11:45:50.703 DEBUG 10244 --- [http-nio-80-exec-10] com.pal.blog.dao.CommentDao.saveComment  : <==    Updates: 1
+2020-07-14 11:45:50.703 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.dao.BlogDao.getCommentCountById    : ==>  Preparing: update t_blog b set b.comment_count = ( select count(*) from t_comment c where c.blog_id = ? and b.id = ? ) WHERE b.id = ?
+2020-07-14 11:45:50.703 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.dao.BlogDao.getCommentCountById    : ==> Parameters: 63(Long), 63(Long), 63(Long)
+2020-07-14 11:45:50.797 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.dao.BlogDao.getCommentCountById    : <==    Updates: 1
+2020-07-14 11:45:50.797 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.d.C.findByBlogIdParentIdNull       : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 11:45:50.797 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.d.C.findByBlogIdParentIdNull       : ==> Parameters: 63(Long), -1(Long)
+2020-07-14 11:45:50.844 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.d.C.findByBlogIdParentIdNull       : <==      Total: 1
+2020-07-14 11:45:50.844 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.d.C.findByBlogIdParentIdNotNull    : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 11:45:50.844 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.d.C.findByBlogIdParentIdNotNull    : ==> Parameters: 63(Long), 28(Long)
+2020-07-14 11:45:50.875 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.d.C.findByBlogIdParentIdNotNull    : <==      Total: 1
+2020-07-14 11:45:50.875 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.d.C.findByBlogIdAndReplayId        : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 11:45:50.875 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.d.C.findByBlogIdAndReplayId        : ==> Parameters: 63(Long), 29(Long)
+2020-07-14 11:45:50.875 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.d.C.findByBlogIdAndReplayId        : <==      Total: 0
+2020-07-14 11:45:50.875  INFO 10244 --- [http-nio-80-exec-10] com.pal.blog.aspect.LogAspect            : Result : blog :: commentList
+2020-07-14 11:47:36.393  INFO 10244 --- [http-nio-80-exec-6] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/comments', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.CommentController.post', args=[Comment{id=null, nickname='小红', email='925978482@qq.com', content='大家好', avatar='null', createTime=null, blogId=63, parentCommentId=null, adminComment=false, replyComments=[], parentComment=Comment{id=29, nickname='null', email='null', content='null', avatar='null', createTime=null, blogId=null, parentCommentId=null, adminComment=false, replyComments=[], parentComment=null, parentNickname='null'}, parentNickname='null'}, org.apache.catalina.session.StandardSessionFacade@2982318a, {comment=Comment{id=null, nickname='小红', email='925978482@qq.com', content='大家好', avatar='null', createTime=null, blogId=63, parentCommentId=null, adminComment=false, replyComments=[], parentComment=Comment{id=29, nickname='null', email='null', content='null', avatar='null', createTime=null, blogId=null, parentCommentId=null, adminComment=false, replyComments=[], parentComment=null, parentNickname='null'}, parentNickname='null'}, org.springframework.validation.BindingResult.comment=org.springframework.validation.BeanPropertyBindingResult: 0 errors}]}
+2020-07-14 11:47:36.394 DEBUG 10244 --- [http-nio-80-exec-6] com.pal.blog.dao.CommentDao.saveComment  : ==>  Preparing: insert into t_comment (nickname,email,content,avatar,create_time,blog_id,parent_comment_id,admin_comment) values (?,?,?,?,?,?,?,?);
+2020-07-14 11:47:36.394 DEBUG 10244 --- [http-nio-80-exec-6] com.pal.blog.dao.CommentDao.saveComment  : ==> Parameters: 小红(String), 925978482@qq.com(String), 大家好(String), /images/avatar.png(String), 2020-07-14 11:47:36.393(Timestamp), 63(Long), 29(Long), false(Boolean)
+2020-07-14 11:47:36.543 DEBUG 10244 --- [http-nio-80-exec-6] com.pal.blog.dao.CommentDao.saveComment  : <==    Updates: 1
+2020-07-14 11:47:36.558 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.dao.BlogDao.getCommentCountById    : ==>  Preparing: update t_blog b set b.comment_count = ( select count(*) from t_comment c where c.blog_id = ? and b.id = ? ) WHERE b.id = ?
+2020-07-14 11:47:36.558 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.dao.BlogDao.getCommentCountById    : ==> Parameters: 63(Long), 63(Long), 63(Long)
+2020-07-14 11:47:36.670 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.dao.BlogDao.getCommentCountById    : <==    Updates: 1
+2020-07-14 11:47:36.670 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdParentIdNull       : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 11:47:36.670 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdParentIdNull       : ==> Parameters: 63(Long), -1(Long)
+2020-07-14 11:47:36.670 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdParentIdNull       : <==      Total: 1
+2020-07-14 11:47:36.670 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdParentIdNotNull    : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 11:47:36.670 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdParentIdNotNull    : ==> Parameters: 63(Long), 28(Long)
+2020-07-14 11:47:36.670 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdParentIdNotNull    : <==      Total: 1
+2020-07-14 11:47:36.670 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdAndReplayId        : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 11:47:36.670 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdAndReplayId        : ==> Parameters: 63(Long), 29(Long)
+2020-07-14 11:47:36.670 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdAndReplayId        : <==      Total: 1
+2020-07-14 11:47:36.670 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdAndReplayId        : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 11:47:36.670 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdAndReplayId        : ==> Parameters: 63(Long), 30(Long)
+2020-07-14 11:47:36.670 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdAndReplayId        : <==      Total: 0
+2020-07-14 11:47:36.670  INFO 10244 --- [http-nio-80-exec-6] com.pal.blog.aspect.LogAspect            : Result : blog :: commentList
+2020-07-14 11:48:03.321  INFO 10244 --- [http-nio-80-exec-3] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/comments', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.CommentController.post', args=[Comment{id=null, nickname='小蓝', email='925978482@qq.com', content='哈哈', avatar='null', createTime=null, blogId=63, parentCommentId=null, adminComment=false, replyComments=[], parentComment=Comment{id=30, nickname='null', email='null', content='null', avatar='null', createTime=null, blogId=null, parentCommentId=null, adminComment=false, replyComments=[], parentComment=null, parentNickname='null'}, parentNickname='null'}, org.apache.catalina.session.StandardSessionFacade@2982318a, {comment=Comment{id=null, nickname='小蓝', email='925978482@qq.com', content='哈哈', avatar='null', createTime=null, blogId=63, parentCommentId=null, adminComment=false, replyComments=[], parentComment=Comment{id=30, nickname='null', email='null', content='null', avatar='null', createTime=null, blogId=null, parentCommentId=null, adminComment=false, replyComments=[], parentComment=null, parentNickname='null'}, parentNickname='null'}, org.springframework.validation.BindingResult.comment=org.springframework.validation.BeanPropertyBindingResult: 0 errors}]}
+2020-07-14 11:48:03.322 DEBUG 10244 --- [http-nio-80-exec-3] com.pal.blog.dao.CommentDao.saveComment  : ==>  Preparing: insert into t_comment (nickname,email,content,avatar,create_time,blog_id,parent_comment_id,admin_comment) values (?,?,?,?,?,?,?,?);
+2020-07-14 11:48:03.322 DEBUG 10244 --- [http-nio-80-exec-3] com.pal.blog.dao.CommentDao.saveComment  : ==> Parameters: 小蓝(String), 925978482@qq.com(String), 哈哈(String), /images/avatar.png(String), 2020-07-14 11:48:03.321(Timestamp), 63(Long), 30(Long), false(Boolean)
+2020-07-14 11:48:03.436 DEBUG 10244 --- [http-nio-80-exec-3] com.pal.blog.dao.CommentDao.saveComment  : <==    Updates: 1
+2020-07-14 11:48:03.436 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.dao.BlogDao.getCommentCountById    : ==>  Preparing: update t_blog b set b.comment_count = ( select count(*) from t_comment c where c.blog_id = ? and b.id = ? ) WHERE b.id = ?
+2020-07-14 11:48:03.436 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.dao.BlogDao.getCommentCountById    : ==> Parameters: 63(Long), 63(Long), 63(Long)
+2020-07-14 11:48:03.540 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.dao.BlogDao.getCommentCountById    : <==    Updates: 1
+2020-07-14 11:48:03.540 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.d.C.findByBlogIdParentIdNull       : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 11:48:03.540 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.d.C.findByBlogIdParentIdNull       : ==> Parameters: 63(Long), -1(Long)
+2020-07-14 11:48:03.540 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.d.C.findByBlogIdParentIdNull       : <==      Total: 1
+2020-07-14 11:48:03.540 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.d.C.findByBlogIdParentIdNotNull    : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 11:48:03.540 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.d.C.findByBlogIdParentIdNotNull    : ==> Parameters: 63(Long), 28(Long)
+2020-07-14 11:48:03.540 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.d.C.findByBlogIdParentIdNotNull    : <==      Total: 1
+2020-07-14 11:48:03.540 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.d.C.findByBlogIdAndReplayId        : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 11:48:03.540 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.d.C.findByBlogIdAndReplayId        : ==> Parameters: 63(Long), 29(Long)
+2020-07-14 11:48:03.540 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.d.C.findByBlogIdAndReplayId        : <==      Total: 1
+2020-07-14 11:48:03.540 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.d.C.findByBlogIdAndReplayId        : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 11:48:03.540 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.d.C.findByBlogIdAndReplayId        : ==> Parameters: 63(Long), 30(Long)
+2020-07-14 11:48:03.540 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.d.C.findByBlogIdAndReplayId        : <==      Total: 1
+2020-07-14 11:48:03.540 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.d.C.findByBlogIdAndReplayId        : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 11:48:03.540 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.d.C.findByBlogIdAndReplayId        : ==> Parameters: 63(Long), 31(Long)
+2020-07-14 11:48:03.540 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.d.C.findByBlogIdAndReplayId        : <==      Total: 0
+2020-07-14 11:48:03.540  INFO 10244 --- [http-nio-80-exec-3] com.pal.blog.aspect.LogAspect            : Result : blog :: commentList
+2020-07-14 11:50:37.545  INFO 10244 --- [http-nio-80-exec-9] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/blog/63', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.blog', args=[63, {}]}
+2020-07-14 11:50:37.546 DEBUG 10244 --- [http-nio-80-exec-9] c.pal.blog.dao.BlogDao.getDetailedBlog   : ==>  Preparing: select b.id bid,b.first_picture,b.flag,b.title,b.content,b.views,b.comment_count,b.update_time,b.commentabled,b.share_statement,b.appreciation, u.nickname,u.avatar,t.name from t_blog b,t_user u, t_type t where b.user_id = u.id and b.type_id = t.id and b.id = ?
+2020-07-14 11:50:37.546 DEBUG 10244 --- [http-nio-80-exec-9] c.pal.blog.dao.BlogDao.getDetailedBlog   : ==> Parameters: 63(Long)
+2020-07-14 11:50:37.548 DEBUG 10244 --- [http-nio-80-exec-9] c.pal.blog.dao.BlogDao.getDetailedBlog   : <==      Total: 1
+2020-07-14 11:50:37.553 DEBUG 10244 --- [http-nio-80-exec-9] com.pal.blog.dao.BlogDao.updateViews     : ==>  Preparing: update t_blog b set b.views = b.views+1 where b.id = ?
+2020-07-14 11:50:37.553 DEBUG 10244 --- [http-nio-80-exec-9] com.pal.blog.dao.BlogDao.updateViews     : ==> Parameters: 63(Long)
+2020-07-14 11:50:37.694 DEBUG 10244 --- [http-nio-80-exec-9] com.pal.blog.dao.BlogDao.updateViews     : <==    Updates: 1
+2020-07-14 11:50:37.695 DEBUG 10244 --- [http-nio-80-exec-9] c.p.b.dao.BlogDao.getCommentCountById    : ==>  Preparing: update t_blog b set b.comment_count = ( select count(*) from t_comment c where c.blog_id = ? and b.id = ? ) WHERE b.id = ?
+2020-07-14 11:50:37.695 DEBUG 10244 --- [http-nio-80-exec-9] c.p.b.dao.BlogDao.getCommentCountById    : ==> Parameters: 63(Long), 63(Long), 63(Long)
+2020-07-14 11:50:37.697 DEBUG 10244 --- [http-nio-80-exec-9] c.p.b.dao.BlogDao.getCommentCountById    : <==    Updates: 1
+2020-07-14 11:50:37.697  INFO 10244 --- [http-nio-80-exec-9] com.pal.blog.aspect.LogAspect            : Result : blog
+2020-07-14 11:50:38.019  INFO 10244 --- [http-nio-80-exec-3] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/footer/blogmessage', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.blogMessage', args=[{}]}
+2020-07-14 11:50:38.019 DEBUG 10244 --- [http-nio-80-exec-3] com.pal.blog.dao.BlogDao.getBlogTotal    : ==>  Preparing: select count(*) from t_blog
+2020-07-14 11:50:38.019 DEBUG 10244 --- [http-nio-80-exec-3] com.pal.blog.dao.BlogDao.getBlogTotal    : ==> Parameters: 
+2020-07-14 11:50:38.091  INFO 10244 --- [http-nio-80-exec-7] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/comments/63', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.CommentController.comments', args=[63, {}]}
+2020-07-14 11:50:38.092 DEBUG 10244 --- [http-nio-80-exec-7] c.p.b.d.C.findByBlogIdParentIdNull       : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 11:50:38.092 DEBUG 10244 --- [http-nio-80-exec-7] c.p.b.d.C.findByBlogIdParentIdNull       : ==> Parameters: 63(Long), -1(Long)
+2020-07-14 11:50:38.175 DEBUG 10244 --- [http-nio-80-exec-3] com.pal.blog.dao.BlogDao.getBlogTotal    : <==      Total: 1
+2020-07-14 11:50:38.176 DEBUG 10244 --- [http-nio-80-exec-3] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==>  Preparing: select coalesce (sum(views),0) from t_blog
+2020-07-14 11:50:38.176 DEBUG 10244 --- [http-nio-80-exec-3] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==> Parameters: 
+2020-07-14 11:50:38.177 DEBUG 10244 --- [http-nio-80-exec-3] c.pal.blog.dao.BlogDao.getBlogViewTotal  : <==      Total: 1
+2020-07-14 11:50:38.177 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==>  Preparing: select count(*) from t_comment
+2020-07-14 11:50:38.177 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==> Parameters: 
+2020-07-14 11:50:38.179 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.dao.BlogDao.getBlogCommentTotal    : <==      Total: 1
+2020-07-14 11:50:38.182 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==>  Preparing: select count(*) from t_message
+2020-07-14 11:50:38.183 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==> Parameters: 
+2020-07-14 11:50:38.184 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.dao.BlogDao.getBlogMessageTotal    : <==      Total: 1
+2020-07-14 11:50:38.185  INFO 10244 --- [http-nio-80-exec-3] com.pal.blog.aspect.LogAspect            : Result : index :: blogMessage
+2020-07-14 11:50:38.219 DEBUG 10244 --- [http-nio-80-exec-7] c.p.b.d.C.findByBlogIdParentIdNull       : <==      Total: 1
+2020-07-14 11:50:38.219 DEBUG 10244 --- [http-nio-80-exec-7] c.p.b.d.C.findByBlogIdParentIdNotNull    : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 11:50:38.220 DEBUG 10244 --- [http-nio-80-exec-7] c.p.b.d.C.findByBlogIdParentIdNotNull    : ==> Parameters: 63(Long), 28(Long)
+2020-07-14 11:50:38.221 DEBUG 10244 --- [http-nio-80-exec-7] c.p.b.d.C.findByBlogIdParentIdNotNull    : <==      Total: 1
+2020-07-14 11:50:38.221 DEBUG 10244 --- [http-nio-80-exec-7] c.p.b.d.C.findByBlogIdAndReplayId        : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 11:50:38.221 DEBUG 10244 --- [http-nio-80-exec-7] c.p.b.d.C.findByBlogIdAndReplayId        : ==> Parameters: 63(Long), 29(Long)
+2020-07-14 11:50:38.222 DEBUG 10244 --- [http-nio-80-exec-7] c.p.b.d.C.findByBlogIdAndReplayId        : <==      Total: 1
+2020-07-14 11:50:38.223 DEBUG 10244 --- [http-nio-80-exec-7] c.p.b.d.C.findByBlogIdAndReplayId        : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 11:50:38.223 DEBUG 10244 --- [http-nio-80-exec-7] c.p.b.d.C.findByBlogIdAndReplayId        : ==> Parameters: 63(Long), 30(Long)
+2020-07-14 11:50:38.223 DEBUG 10244 --- [http-nio-80-exec-7] c.p.b.d.C.findByBlogIdAndReplayId        : <==      Total: 1
+2020-07-14 11:50:38.224 DEBUG 10244 --- [http-nio-80-exec-7] c.p.b.d.C.findByBlogIdAndReplayId        : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 11:50:38.224 DEBUG 10244 --- [http-nio-80-exec-7] c.p.b.d.C.findByBlogIdAndReplayId        : ==> Parameters: 63(Long), 31(Long)
+2020-07-14 11:50:38.224 DEBUG 10244 --- [http-nio-80-exec-7] c.p.b.d.C.findByBlogIdAndReplayId        : <==      Total: 0
+2020-07-14 11:50:38.224  INFO 10244 --- [http-nio-80-exec-7] com.pal.blog.aspect.LogAspect            : Result : blog :: commentList
+2020-07-14 11:50:48.098  INFO 10244 --- [http-nio-80-exec-1] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.index', args=[{}, 1, {}]}
+2020-07-14 11:50:48.100 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.d.BlogDao.getFirstPageBlog_COUNT   : ==>  Preparing: SELECT count(0) FROM t_blog b, t_type t, t_user u WHERE b.type_id = t.id AND u.id = b.user_id
+2020-07-14 11:50:48.100 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.d.BlogDao.getFirstPageBlog_COUNT   : ==> Parameters: 
+2020-07-14 11:50:48.101 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.d.BlogDao.getFirstPageBlog_COUNT   : <==      Total: 1
+2020-07-14 11:50:48.101 DEBUG 10244 --- [http-nio-80-exec-1] c.pal.blog.dao.BlogDao.getFirstPageBlog  : ==>  Preparing: select b.id,b.title,b.first_picture, b.views, b.comment_count,b.create_time,b.update_time,b.description, t.name , u.nickname, u.avatar from t_blog b, t_type t,t_user u where b.type_id = t.id and u.id = b.user_id order by b.create_time desc LIMIT ?
+2020-07-14 11:50:48.102 DEBUG 10244 --- [http-nio-80-exec-1] c.pal.blog.dao.BlogDao.getFirstPageBlog  : ==> Parameters: 10(Integer)
+2020-07-14 11:50:48.212 DEBUG 10244 --- [http-nio-80-exec-1] c.pal.blog.dao.BlogDao.getFirstPageBlog  : <==      Total: 1
+2020-07-14 11:50:48.212 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.dao.BlogDao.getAllRecommendBlog    : ==>  Preparing: select * from t_blog where t_blog.recommend = true order by t_blog.create_time desc limit 4;
+2020-07-14 11:50:48.212 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.dao.BlogDao.getAllRecommendBlog    : ==> Parameters: 
+2020-07-14 11:50:48.230 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.dao.BlogDao.getAllRecommendBlog    : <==      Total: 1
+2020-07-14 11:50:48.231  INFO 10244 --- [http-nio-80-exec-1] com.pal.blog.aspect.LogAspect            : Result : index
+2020-07-14 11:50:48.310  INFO 10244 --- [http-nio-80-exec-10] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/footer/blogmessage', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.blogMessage', args=[{}]}
+2020-07-14 11:50:48.311 DEBUG 10244 --- [http-nio-80-exec-10] com.pal.blog.dao.BlogDao.getBlogTotal    : ==>  Preparing: select count(*) from t_blog
+2020-07-14 11:50:48.311 DEBUG 10244 --- [http-nio-80-exec-10] com.pal.blog.dao.BlogDao.getBlogTotal    : ==> Parameters: 
+2020-07-14 11:50:48.336 DEBUG 10244 --- [http-nio-80-exec-10] com.pal.blog.dao.BlogDao.getBlogTotal    : <==      Total: 1
+2020-07-14 11:50:48.337 DEBUG 10244 --- [http-nio-80-exec-10] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==>  Preparing: select coalesce (sum(views),0) from t_blog
+2020-07-14 11:50:48.337 DEBUG 10244 --- [http-nio-80-exec-10] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==> Parameters: 
+2020-07-14 11:50:48.338 DEBUG 10244 --- [http-nio-80-exec-10] c.pal.blog.dao.BlogDao.getBlogViewTotal  : <==      Total: 1
+2020-07-14 11:50:48.339 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==>  Preparing: select count(*) from t_comment
+2020-07-14 11:50:48.339 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==> Parameters: 
+2020-07-14 11:50:48.345 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.dao.BlogDao.getBlogCommentTotal    : <==      Total: 1
+2020-07-14 11:50:48.345 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==>  Preparing: select count(*) from t_message
+2020-07-14 11:50:48.345 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==> Parameters: 
+2020-07-14 11:50:48.345 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.dao.BlogDao.getBlogMessageTotal    : <==      Total: 1
+2020-07-14 11:50:48.345  INFO 10244 --- [http-nio-80-exec-10] com.pal.blog.aspect.LogAspect            : Result : index :: blogMessage
+2020-07-14 11:50:54.500  INFO 10244 --- [http-nio-80-exec-4] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/blog/63', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.blog', args=[63, {}]}
+2020-07-14 11:50:54.501 DEBUG 10244 --- [http-nio-80-exec-4] c.pal.blog.dao.BlogDao.getDetailedBlog   : ==>  Preparing: select b.id bid,b.first_picture,b.flag,b.title,b.content,b.views,b.comment_count,b.update_time,b.commentabled,b.share_statement,b.appreciation, u.nickname,u.avatar,t.name from t_blog b,t_user u, t_type t where b.user_id = u.id and b.type_id = t.id and b.id = ?
+2020-07-14 11:50:54.501 DEBUG 10244 --- [http-nio-80-exec-4] c.pal.blog.dao.BlogDao.getDetailedBlog   : ==> Parameters: 63(Long)
+2020-07-14 11:50:54.503 DEBUG 10244 --- [http-nio-80-exec-4] c.pal.blog.dao.BlogDao.getDetailedBlog   : <==      Total: 1
+2020-07-14 11:50:54.508 DEBUG 10244 --- [http-nio-80-exec-4] com.pal.blog.dao.BlogDao.updateViews     : ==>  Preparing: update t_blog b set b.views = b.views+1 where b.id = ?
+2020-07-14 11:50:54.509 DEBUG 10244 --- [http-nio-80-exec-4] com.pal.blog.dao.BlogDao.updateViews     : ==> Parameters: 63(Long)
+2020-07-14 11:50:54.663 DEBUG 10244 --- [http-nio-80-exec-4] com.pal.blog.dao.BlogDao.updateViews     : <==    Updates: 1
+2020-07-14 11:50:54.663 DEBUG 10244 --- [http-nio-80-exec-4] c.p.b.dao.BlogDao.getCommentCountById    : ==>  Preparing: update t_blog b set b.comment_count = ( select count(*) from t_comment c where c.blog_id = ? and b.id = ? ) WHERE b.id = ?
+2020-07-14 11:50:54.663 DEBUG 10244 --- [http-nio-80-exec-4] c.p.b.dao.BlogDao.getCommentCountById    : ==> Parameters: 63(Long), 63(Long), 63(Long)
+2020-07-14 11:50:54.664 DEBUG 10244 --- [http-nio-80-exec-4] c.p.b.dao.BlogDao.getCommentCountById    : <==    Updates: 1
+2020-07-14 11:50:54.664  INFO 10244 --- [http-nio-80-exec-4] com.pal.blog.aspect.LogAspect            : Result : blog
+2020-07-14 11:50:54.963  INFO 10244 --- [http-nio-80-exec-4] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/footer/blogmessage', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.blogMessage', args=[{}]}
+2020-07-14 11:50:54.963 DEBUG 10244 --- [http-nio-80-exec-4] com.pal.blog.dao.BlogDao.getBlogTotal    : ==>  Preparing: select count(*) from t_blog
+2020-07-14 11:50:54.963 DEBUG 10244 --- [http-nio-80-exec-4] com.pal.blog.dao.BlogDao.getBlogTotal    : ==> Parameters: 
+2020-07-14 11:50:54.965 DEBUG 10244 --- [http-nio-80-exec-4] com.pal.blog.dao.BlogDao.getBlogTotal    : <==      Total: 1
+2020-07-14 11:50:54.965 DEBUG 10244 --- [http-nio-80-exec-4] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==>  Preparing: select coalesce (sum(views),0) from t_blog
+2020-07-14 11:50:54.965 DEBUG 10244 --- [http-nio-80-exec-4] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==> Parameters: 
+2020-07-14 11:50:54.966 DEBUG 10244 --- [http-nio-80-exec-4] c.pal.blog.dao.BlogDao.getBlogViewTotal  : <==      Total: 1
+2020-07-14 11:50:54.966 DEBUG 10244 --- [http-nio-80-exec-4] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==>  Preparing: select count(*) from t_comment
+2020-07-14 11:50:54.966 DEBUG 10244 --- [http-nio-80-exec-4] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==> Parameters: 
+2020-07-14 11:50:54.988 DEBUG 10244 --- [http-nio-80-exec-4] c.p.b.dao.BlogDao.getBlogCommentTotal    : <==      Total: 1
+2020-07-14 11:50:54.989 DEBUG 10244 --- [http-nio-80-exec-4] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==>  Preparing: select count(*) from t_message
+2020-07-14 11:50:54.990 DEBUG 10244 --- [http-nio-80-exec-4] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==> Parameters: 
+2020-07-14 11:50:54.990 DEBUG 10244 --- [http-nio-80-exec-4] c.p.b.dao.BlogDao.getBlogMessageTotal    : <==      Total: 1
+2020-07-14 11:50:54.991  INFO 10244 --- [http-nio-80-exec-4] com.pal.blog.aspect.LogAspect            : Result : index :: blogMessage
+2020-07-14 11:50:55.047  INFO 10244 --- [http-nio-80-exec-1] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/comments/63', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.CommentController.comments', args=[63, {}]}
+2020-07-14 11:50:55.047 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.d.C.findByBlogIdParentIdNull       : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 11:50:55.047 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.d.C.findByBlogIdParentIdNull       : ==> Parameters: 63(Long), -1(Long)
+2020-07-14 11:50:55.048 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.d.C.findByBlogIdParentIdNull       : <==      Total: 1
+2020-07-14 11:50:55.048 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.d.C.findByBlogIdParentIdNotNull    : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 11:50:55.048 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.d.C.findByBlogIdParentIdNotNull    : ==> Parameters: 63(Long), 28(Long)
+2020-07-14 11:50:55.061 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.d.C.findByBlogIdParentIdNotNull    : <==      Total: 1
+2020-07-14 11:50:55.061 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.d.C.findByBlogIdAndReplayId        : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 11:50:55.062 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.d.C.findByBlogIdAndReplayId        : ==> Parameters: 63(Long), 29(Long)
+2020-07-14 11:50:55.062 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.d.C.findByBlogIdAndReplayId        : <==      Total: 1
+2020-07-14 11:50:55.063 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.d.C.findByBlogIdAndReplayId        : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 11:50:55.063 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.d.C.findByBlogIdAndReplayId        : ==> Parameters: 63(Long), 30(Long)
+2020-07-14 11:50:55.064 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.d.C.findByBlogIdAndReplayId        : <==      Total: 1
+2020-07-14 11:50:55.064 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.d.C.findByBlogIdAndReplayId        : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 11:50:55.064 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.d.C.findByBlogIdAndReplayId        : ==> Parameters: 63(Long), 31(Long)
+2020-07-14 11:50:55.065 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.d.C.findByBlogIdAndReplayId        : <==      Total: 0
+2020-07-14 11:50:55.065  INFO 10244 --- [http-nio-80-exec-1] com.pal.blog.aspect.LogAspect            : Result : blog :: commentList
+2020-07-14 11:51:39.038  INFO 10244 --- [http-nio-80-exec-2] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.index', args=[{}, 1, {}]}
+2020-07-14 11:51:39.041 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.d.BlogDao.getFirstPageBlog_COUNT   : ==>  Preparing: SELECT count(0) FROM t_blog b, t_type t, t_user u WHERE b.type_id = t.id AND u.id = b.user_id
+2020-07-14 11:51:39.041 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.d.BlogDao.getFirstPageBlog_COUNT   : ==> Parameters: 
+2020-07-14 11:51:39.042 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.d.BlogDao.getFirstPageBlog_COUNT   : <==      Total: 1
+2020-07-14 11:51:39.043 DEBUG 10244 --- [http-nio-80-exec-2] c.pal.blog.dao.BlogDao.getFirstPageBlog  : ==>  Preparing: select b.id,b.title,b.first_picture, b.views, b.comment_count,b.create_time,b.update_time,b.description, t.name , u.nickname, u.avatar from t_blog b, t_type t,t_user u where b.type_id = t.id and u.id = b.user_id order by b.create_time desc LIMIT ?
+2020-07-14 11:51:39.043 DEBUG 10244 --- [http-nio-80-exec-2] c.pal.blog.dao.BlogDao.getFirstPageBlog  : ==> Parameters: 10(Integer)
+2020-07-14 11:51:39.046 DEBUG 10244 --- [http-nio-80-exec-2] c.pal.blog.dao.BlogDao.getFirstPageBlog  : <==      Total: 1
+2020-07-14 11:51:39.047 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.dao.BlogDao.getAllRecommendBlog    : ==>  Preparing: select * from t_blog where t_blog.recommend = true order by t_blog.create_time desc limit 4;
+2020-07-14 11:51:39.048 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.dao.BlogDao.getAllRecommendBlog    : ==> Parameters: 
+2020-07-14 11:51:39.049 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.dao.BlogDao.getAllRecommendBlog    : <==      Total: 1
+2020-07-14 11:51:39.049  INFO 10244 --- [http-nio-80-exec-2] com.pal.blog.aspect.LogAspect            : Result : index
+2020-07-14 11:51:39.126  INFO 10244 --- [http-nio-80-exec-10] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/footer/blogmessage', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.blogMessage', args=[{}]}
+2020-07-14 11:51:39.126 DEBUG 10244 --- [http-nio-80-exec-10] com.pal.blog.dao.BlogDao.getBlogTotal    : ==>  Preparing: select count(*) from t_blog
+2020-07-14 11:51:39.126 DEBUG 10244 --- [http-nio-80-exec-10] com.pal.blog.dao.BlogDao.getBlogTotal    : ==> Parameters: 
+2020-07-14 11:51:39.130 DEBUG 10244 --- [http-nio-80-exec-10] com.pal.blog.dao.BlogDao.getBlogTotal    : <==      Total: 1
+2020-07-14 11:51:39.130 DEBUG 10244 --- [http-nio-80-exec-10] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==>  Preparing: select coalesce (sum(views),0) from t_blog
+2020-07-14 11:51:39.131 DEBUG 10244 --- [http-nio-80-exec-10] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==> Parameters: 
+2020-07-14 11:51:39.131 DEBUG 10244 --- [http-nio-80-exec-10] c.pal.blog.dao.BlogDao.getBlogViewTotal  : <==      Total: 1
+2020-07-14 11:51:39.132 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==>  Preparing: select count(*) from t_comment
+2020-07-14 11:51:39.132 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==> Parameters: 
+2020-07-14 11:51:39.135 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.dao.BlogDao.getBlogCommentTotal    : <==      Total: 1
+2020-07-14 11:51:39.135 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==>  Preparing: select count(*) from t_message
+2020-07-14 11:51:39.135 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==> Parameters: 
+2020-07-14 11:51:39.136 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.dao.BlogDao.getBlogMessageTotal    : <==      Total: 1
+2020-07-14 11:51:39.137  INFO 10244 --- [http-nio-80-exec-10] com.pal.blog.aspect.LogAspect            : Result : index :: blogMessage
+2020-07-14 11:51:58.136  INFO 10244 --- [http-nio-80-exec-8] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/search', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.search', args=[{}, 1, 博客]}
+2020-07-14 11:51:58.183 DEBUG 10244 --- [http-nio-80-exec-8] c.p.b.dao.BlogDao.getSearchBlog_COUNT    : ==>  Preparing: SELECT count(0) FROM t_blog b, t_type t, t_user u WHERE b.type_id = t.id AND u.id = b.user_id AND (b.title LIKE ? OR b.content LIKE ?)
+2020-07-14 11:51:58.183 DEBUG 10244 --- [http-nio-80-exec-8] c.p.b.dao.BlogDao.getSearchBlog_COUNT    : ==> Parameters: %博客%(String), %博客%(String)
+2020-07-14 11:51:58.183 DEBUG 10244 --- [http-nio-80-exec-8] c.p.b.dao.BlogDao.getSearchBlog_COUNT    : <==      Total: 1
+2020-07-14 11:51:58.184 DEBUG 10244 --- [http-nio-80-exec-8] com.pal.blog.dao.BlogDao.getSearchBlog   : ==>  Preparing: select b.id,b.title,b.first_picture, b.views,b.comment_count,b.update_time,b.description, t.name , u.nickname, u.avatar from t_blog b, t_type t,t_user u where b.type_id = t.id and u.id = b.user_id and (b.title like ? or b.content like ?) order by b.update_time desc LIMIT ?
+2020-07-14 11:51:58.184 DEBUG 10244 --- [http-nio-80-exec-8] com.pal.blog.dao.BlogDao.getSearchBlog   : ==> Parameters: %博客%(String), %博客%(String), 1000(Integer)
+2020-07-14 11:51:58.185 DEBUG 10244 --- [http-nio-80-exec-8] com.pal.blog.dao.BlogDao.getSearchBlog   : <==      Total: 1
+2020-07-14 11:51:58.185  INFO 10244 --- [http-nio-80-exec-8] com.pal.blog.aspect.LogAspect            : Result : search
+2020-07-14 11:52:43.560  INFO 10244 --- [http-nio-80-exec-5] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.index', args=[{}, 1, {}]}
+2020-07-14 11:52:43.563 DEBUG 10244 --- [http-nio-80-exec-5] c.p.b.d.BlogDao.getFirstPageBlog_COUNT   : ==>  Preparing: SELECT count(0) FROM t_blog b, t_type t, t_user u WHERE b.type_id = t.id AND u.id = b.user_id
+2020-07-14 11:52:43.563 DEBUG 10244 --- [http-nio-80-exec-5] c.p.b.d.BlogDao.getFirstPageBlog_COUNT   : ==> Parameters: 
+2020-07-14 11:52:43.564 DEBUG 10244 --- [http-nio-80-exec-5] c.p.b.d.BlogDao.getFirstPageBlog_COUNT   : <==      Total: 1
+2020-07-14 11:52:43.565 DEBUG 10244 --- [http-nio-80-exec-5] c.pal.blog.dao.BlogDao.getFirstPageBlog  : ==>  Preparing: select b.id,b.title,b.first_picture, b.views, b.comment_count,b.create_time,b.update_time,b.description, t.name , u.nickname, u.avatar from t_blog b, t_type t,t_user u where b.type_id = t.id and u.id = b.user_id order by b.create_time desc LIMIT ?
+2020-07-14 11:52:43.565 DEBUG 10244 --- [http-nio-80-exec-5] c.pal.blog.dao.BlogDao.getFirstPageBlog  : ==> Parameters: 10(Integer)
+2020-07-14 11:52:43.566 DEBUG 10244 --- [http-nio-80-exec-5] c.pal.blog.dao.BlogDao.getFirstPageBlog  : <==      Total: 1
+2020-07-14 11:52:43.567 DEBUG 10244 --- [http-nio-80-exec-5] c.p.b.dao.BlogDao.getAllRecommendBlog    : ==>  Preparing: select * from t_blog where t_blog.recommend = true order by t_blog.create_time desc limit 4;
+2020-07-14 11:52:43.568 DEBUG 10244 --- [http-nio-80-exec-5] c.p.b.dao.BlogDao.getAllRecommendBlog    : ==> Parameters: 
+2020-07-14 11:52:43.568 DEBUG 10244 --- [http-nio-80-exec-5] c.p.b.dao.BlogDao.getAllRecommendBlog    : <==      Total: 1
+2020-07-14 11:52:43.569  INFO 10244 --- [http-nio-80-exec-5] com.pal.blog.aspect.LogAspect            : Result : index
+2020-07-14 11:52:43.639  INFO 10244 --- [http-nio-80-exec-3] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/footer/blogmessage', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.blogMessage', args=[{}]}
+2020-07-14 11:52:43.639 DEBUG 10244 --- [http-nio-80-exec-3] com.pal.blog.dao.BlogDao.getBlogTotal    : ==>  Preparing: select count(*) from t_blog
+2020-07-14 11:52:43.640 DEBUG 10244 --- [http-nio-80-exec-3] com.pal.blog.dao.BlogDao.getBlogTotal    : ==> Parameters: 
+2020-07-14 11:52:43.642 DEBUG 10244 --- [http-nio-80-exec-3] com.pal.blog.dao.BlogDao.getBlogTotal    : <==      Total: 1
+2020-07-14 11:52:43.642 DEBUG 10244 --- [http-nio-80-exec-3] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==>  Preparing: select coalesce (sum(views),0) from t_blog
+2020-07-14 11:52:43.642 DEBUG 10244 --- [http-nio-80-exec-3] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==> Parameters: 
+2020-07-14 11:52:43.643 DEBUG 10244 --- [http-nio-80-exec-3] c.pal.blog.dao.BlogDao.getBlogViewTotal  : <==      Total: 1
+2020-07-14 11:52:43.643 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==>  Preparing: select count(*) from t_comment
+2020-07-14 11:52:43.643 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==> Parameters: 
+2020-07-14 11:52:43.646 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.dao.BlogDao.getBlogCommentTotal    : <==      Total: 1
+2020-07-14 11:52:43.646 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==>  Preparing: select count(*) from t_message
+2020-07-14 11:52:43.647 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==> Parameters: 
+2020-07-14 11:52:43.647 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.dao.BlogDao.getBlogMessageTotal    : <==      Total: 1
+2020-07-14 11:52:43.647  INFO 10244 --- [http-nio-80-exec-3] com.pal.blog.aspect.LogAspect            : Result : index :: blogMessage
+2020-07-14 12:00:22.507  INFO 10244 --- [http-nio-80-exec-2] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/blog/63', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.blog', args=[63, {}]}
+2020-07-14 12:00:22.508 DEBUG 10244 --- [http-nio-80-exec-2] c.pal.blog.dao.BlogDao.getDetailedBlog   : ==>  Preparing: select b.id bid,b.first_picture,b.flag,b.title,b.content,b.views,b.comment_count,b.update_time,b.commentabled,b.share_statement,b.appreciation, u.nickname,u.avatar,t.name from t_blog b,t_user u, t_type t where b.user_id = u.id and b.type_id = t.id and b.id = ?
+2020-07-14 12:00:22.508 DEBUG 10244 --- [http-nio-80-exec-2] c.pal.blog.dao.BlogDao.getDetailedBlog   : ==> Parameters: 63(Long)
+2020-07-14 12:00:22.511 DEBUG 10244 --- [http-nio-80-exec-2] c.pal.blog.dao.BlogDao.getDetailedBlog   : <==      Total: 1
+2020-07-14 12:00:22.513 DEBUG 10244 --- [http-nio-80-exec-2] com.pal.blog.dao.BlogDao.updateViews     : ==>  Preparing: update t_blog b set b.views = b.views+1 where b.id = ?
+2020-07-14 12:00:22.513 DEBUG 10244 --- [http-nio-80-exec-2] com.pal.blog.dao.BlogDao.updateViews     : ==> Parameters: 63(Long)
+2020-07-14 12:00:22.684 DEBUG 10244 --- [http-nio-80-exec-2] com.pal.blog.dao.BlogDao.updateViews     : <==    Updates: 1
+2020-07-14 12:00:22.685 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.dao.BlogDao.getCommentCountById    : ==>  Preparing: update t_blog b set b.comment_count = ( select count(*) from t_comment c where c.blog_id = ? and b.id = ? ) WHERE b.id = ?
+2020-07-14 12:00:22.685 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.dao.BlogDao.getCommentCountById    : ==> Parameters: 63(Long), 63(Long), 63(Long)
+2020-07-14 12:00:22.686 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.dao.BlogDao.getCommentCountById    : <==    Updates: 1
+2020-07-14 12:00:22.686  INFO 10244 --- [http-nio-80-exec-2] com.pal.blog.aspect.LogAspect            : Result : blog
+2020-07-14 12:00:23.000  INFO 10244 --- [http-nio-80-exec-10] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/footer/blogmessage', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.blogMessage', args=[{}]}
+2020-07-14 12:00:23.001 DEBUG 10244 --- [http-nio-80-exec-10] com.pal.blog.dao.BlogDao.getBlogTotal    : ==>  Preparing: select count(*) from t_blog
+2020-07-14 12:00:23.001 DEBUG 10244 --- [http-nio-80-exec-10] com.pal.blog.dao.BlogDao.getBlogTotal    : ==> Parameters: 
+2020-07-14 12:00:23.003 DEBUG 10244 --- [http-nio-80-exec-10] com.pal.blog.dao.BlogDao.getBlogTotal    : <==      Total: 1
+2020-07-14 12:00:23.004 DEBUG 10244 --- [http-nio-80-exec-10] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==>  Preparing: select coalesce (sum(views),0) from t_blog
+2020-07-14 12:00:23.004 DEBUG 10244 --- [http-nio-80-exec-10] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==> Parameters: 
+2020-07-14 12:00:23.006 DEBUG 10244 --- [http-nio-80-exec-10] c.pal.blog.dao.BlogDao.getBlogViewTotal  : <==      Total: 1
+2020-07-14 12:00:23.007 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==>  Preparing: select count(*) from t_comment
+2020-07-14 12:00:23.007 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==> Parameters: 
+2020-07-14 12:00:23.023 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.dao.BlogDao.getBlogCommentTotal    : <==      Total: 1
+2020-07-14 12:00:23.024 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==>  Preparing: select count(*) from t_message
+2020-07-14 12:00:23.024 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==> Parameters: 
+2020-07-14 12:00:23.025 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.dao.BlogDao.getBlogMessageTotal    : <==      Total: 1
+2020-07-14 12:00:23.025  INFO 10244 --- [http-nio-80-exec-10] com.pal.blog.aspect.LogAspect            : Result : index :: blogMessage
+2020-07-14 12:00:23.073  INFO 10244 --- [http-nio-80-exec-3] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/comments/63', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.CommentController.comments', args=[63, {}]}
+2020-07-14 12:00:23.074 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.d.C.findByBlogIdParentIdNull       : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 12:00:23.074 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.d.C.findByBlogIdParentIdNull       : ==> Parameters: 63(Long), -1(Long)
+2020-07-14 12:00:23.076 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.d.C.findByBlogIdParentIdNull       : <==      Total: 1
+2020-07-14 12:00:23.076 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.d.C.findByBlogIdParentIdNotNull    : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 12:00:23.077 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.d.C.findByBlogIdParentIdNotNull    : ==> Parameters: 63(Long), 28(Long)
+2020-07-14 12:00:23.077 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.d.C.findByBlogIdParentIdNotNull    : <==      Total: 1
+2020-07-14 12:00:23.078 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.d.C.findByBlogIdAndReplayId        : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 12:00:23.078 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.d.C.findByBlogIdAndReplayId        : ==> Parameters: 63(Long), 29(Long)
+2020-07-14 12:00:23.078 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.d.C.findByBlogIdAndReplayId        : <==      Total: 1
+2020-07-14 12:00:23.079 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.d.C.findByBlogIdAndReplayId        : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 12:00:23.079 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.d.C.findByBlogIdAndReplayId        : ==> Parameters: 63(Long), 30(Long)
+2020-07-14 12:00:23.090 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.d.C.findByBlogIdAndReplayId        : <==      Total: 1
+2020-07-14 12:00:23.091 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.d.C.findByBlogIdAndReplayId        : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 12:00:23.092 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.d.C.findByBlogIdAndReplayId        : ==> Parameters: 63(Long), 31(Long)
+2020-07-14 12:00:23.092 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.d.C.findByBlogIdAndReplayId        : <==      Total: 0
+2020-07-14 12:00:23.092  INFO 10244 --- [http-nio-80-exec-3] com.pal.blog.aspect.LogAspect            : Result : blog :: commentList
+2020-07-14 12:01:05.185 DEBUG 10244 --- [http-nio-80-exec-7] c.p.b.d.U.findByUsernameAndPassword      : ==>  Preparing: select * from t_user where username = ? and password = ?;
+2020-07-14 12:01:05.186 DEBUG 10244 --- [http-nio-80-exec-7] c.p.b.d.U.findByUsernameAndPassword      : ==> Parameters: cnpal(String), 202cb962ac59075b964b07152d234b70(String)
+2020-07-14 12:01:05.201 DEBUG 10244 --- [http-nio-80-exec-7] c.p.b.d.U.findByUsernameAndPassword      : <==      Total: 1
+2020-07-14 12:01:14.660 DEBUG 10244 --- [http-nio-80-exec-4] c.p.b.dao.BlogDao.getAllBlogQuery_COUNT  : ==>  Preparing: SELECT count(0) FROM t_blog b LEFT OUTER JOIN t_type t ON b.type_id = t.id
+2020-07-14 12:01:14.660 DEBUG 10244 --- [http-nio-80-exec-4] c.p.b.dao.BlogDao.getAllBlogQuery_COUNT  : ==> Parameters: 
+2020-07-14 12:01:14.663 DEBUG 10244 --- [http-nio-80-exec-4] c.p.b.dao.BlogDao.getAllBlogQuery_COUNT  : <==      Total: 1
+2020-07-14 12:01:14.767 DEBUG 10244 --- [http-nio-80-exec-4] c.pal.blog.dao.BlogDao.getAllBlogQuery   : ==>  Preparing: SELECT b.id, b.title, b.update_time, b.recommend, b.published, b.type_id, t.id, t.name FROM t_blog b LEFT OUTER JOIN t_type t ON b.type_id = t.id order by update_time desc LIMIT ?
+2020-07-14 12:01:14.767 DEBUG 10244 --- [http-nio-80-exec-4] c.pal.blog.dao.BlogDao.getAllBlogQuery   : ==> Parameters: 10(Integer)
+2020-07-14 12:01:14.768 DEBUG 10244 --- [http-nio-80-exec-4] c.pal.blog.dao.BlogDao.getAllBlogQuery   : <==      Total: 1
+2020-07-14 12:01:14.778 DEBUG 10244 --- [http-nio-80-exec-4] com.pal.blog.dao.TypeDao.getAllType      : ==>  Preparing: select * from t_type
+2020-07-14 12:01:14.778 DEBUG 10244 --- [http-nio-80-exec-4] com.pal.blog.dao.TypeDao.getAllType      : ==> Parameters: 
+2020-07-14 12:01:14.779 DEBUG 10244 --- [http-nio-80-exec-4] com.pal.blog.dao.TypeDao.getAllType      : <==      Total: 6
+2020-07-14 12:01:19.475 DEBUG 10244 --- [http-nio-80-exec-3] com.pal.blog.dao.BlogDao.getBlogById     : ==>  Preparing: select b.id,b.flag,b.title,b.content,b.type_id, b.first_picture,b.description,b.recommend,b.published,b.share_statement, b.appreciation,b.commentabled from t_blog b where b.id = ?;
+2020-07-14 12:01:19.476 DEBUG 10244 --- [http-nio-80-exec-3] com.pal.blog.dao.BlogDao.getBlogById     : ==> Parameters: 63(Long)
+2020-07-14 12:01:19.477 DEBUG 10244 --- [http-nio-80-exec-3] com.pal.blog.dao.BlogDao.getBlogById     : <==      Total: 1
+2020-07-14 12:01:19.478 DEBUG 10244 --- [http-nio-80-exec-3] com.pal.blog.dao.TypeDao.getAllType      : ==>  Preparing: select * from t_type
+2020-07-14 12:01:19.478 DEBUG 10244 --- [http-nio-80-exec-3] com.pal.blog.dao.TypeDao.getAllType      : ==> Parameters: 
+2020-07-14 12:01:19.479 DEBUG 10244 --- [http-nio-80-exec-3] com.pal.blog.dao.TypeDao.getAllType      : <==      Total: 6
+2020-07-14 12:05:51.890  WARN 10244 --- [http-nio-80-exec-4] o.springframework.validation.DataBinder  : Skipping URI variable 'id' because request contains bind value with same name.
+2020-07-14 12:05:52.040 DEBUG 10244 --- [http-nio-80-exec-4] com.pal.blog.dao.BlogDao.updateBlog      : ==>  Preparing: update t_blog set published = ?,flag = ? , title = ?, content = ?, type_id = ?, first_picture = ? , description = ? , recommend = ? , share_statement = ?, appreciation = ?, commentabled = ? ,update_time = ? where id = ?;
+2020-07-14 12:05:52.041 DEBUG 10244 --- [http-nio-80-exec-4] com.pal.blog.dao.BlogDao.updateBlog      : ==> Parameters: true(Boolean), (String), 个人博客系统（SpringBoot+Mybatis）(String), ### 一、技术栈
+#### 1.前端
+- JS框架：JQuery
+- CSS框架：[Semantic UI官网](https://semantic-ui.com/)
+- Markdown编辑器：[编辑器 Markdown](https://pandao.github.io/editor.md/)
+- 代码高亮：[代码高亮 prism](https://github.com/PrismJS/prism)
+- 动画效果：[动画 animate.css](https://daneden.github.io/animate.css/)
+- 文章目录：[目录生成 Tocbot](https://tscanlin.github.io/tocbot/)
+- 音乐盒[：zplayer](https://gitee.com/supperzh/zplayer)
+- 照片墙[：lightbox插件](https://github.com/JavaScript-Kit/jkresponsivegallery)
+
+#### 2.后端
+- 核心框架：SpringBoot 2.2.5
+- 项目构建：jdk1.8、Maven 3
+- 持久层框架：Mybatis
+- 模板框架：Thymeleaf
+- 分页插件：PageHelper
+- 加密：MD5加密
+- 运行环境：腾讯云Centos7
+
+#### 3.数据库
+- MySQL 5.7
+
+### 二、功能需求
+因为是个人博客，所以没有做用户权限管理，只是简单的区分了一下普通用户和管理员用户，这里就根据普通用户和管理员用户来讲述功能需求，其实从上一篇博文的前端页面就能大致的看出需求了
+
+#### 1.普通用户
+- 查看文章信息：文章列表、推荐文章、文章标题、文章内容、发布时间、访问量以及评论等信息
+- 查看分类文章：分类列表、分类文章信息
+- 查看时间轴：按照文章时间发布顺序查看文章
+- 搜索文章：导航栏右边搜索框根据关键字搜索
+- 听音乐：上一曲、下一曲、音量控制、播放顺序控制、查看歌词等
+- 留言：留言并回复
+- 查看友链：查看并访问博主在友链页面添加的友链连接
+- 查看相册信息：相册列表、照片名称、照片拍摄地点、时间、照片描述
+
+#### 2.管理员用户（栈主）
+- 拥有普通用户所有功能权限
+- 登录：在主页路径下加“/admin”，可进入登录页面，根据数据库的用户名和密码进行登录
+- 文章管理：查询文章列表、新增文章、编辑文章、删除文章、搜索文章
+- 分类管理：查询分类列表、新增分类、编辑分类、删除分类
+- 友链管理：查询友链列表、新增友链、编辑友链、删除友链
+- 相册管理：查询相册列表、新增照片、编辑照片、删除照片
+- 消息管理：登录后恢复评论留言会显示栈主的头像信息，并能显示删除消息按键，可以对消息进行删除
+
+### 三、数据库设计
+> 由于博主最开始是使用jpa作为持久层开发此博客的，数据表是由jpa框架自动生成的，在使用mybatis为持久层的时候就沿用了jpa生成的数据库，但是对评论表和留言表进行了改动，如果同样是先用jpa，再用mybatis开发的伙伴这里要注意一下，如果直接使用mybatis开发的则可以忽略
+
+#### 1.数据表
+- 博客数据表：t_blog
+- 分类数据表：t_type
+- 用户数据表：t_user
+- 评论数据表：t_comment
+- 留言数据表：t_message
+- 友链数据表：t_friend
+- 相册数据表：t_picture
+
+#### 2.实体关系
+
+![image](https://note.youdao.com/yws/api/personal/file/CACBEF653E6745BF834B892952BFA816?method=download&shareKey=946ce6c8c2a0c84b107053cc254088f2)
+
+- 博客和分类是多对一的关系：一个博客对应一个分类，一个分类可以对应多个博客
+- 博客和用户是多对一的关系：一个博客对应一个用户，一个用户可以对应多个博客
+- 博客和评论是一对多的关系：一个博客可以对应多个评论，一个评论对应一个博客
+- 评论和回复是一对多的关系：一个评论可以对应多个回复，一个回复对应一个评论
+
+> 留言和评论是一样的，还有友链和相册数据表和其他表没有关联
+
+#### 3.实体属性
+博客属性：
+
+![image](https://note.youdao.com/yws/api/personal/file/CF5106DE22344BB481B3412A5BFAAAB9?method=download&shareKey=ae43526cd18465a53011fccbbe6e25c8)
+
+分类属性：
+
+![image](https://note.youdao.com/yws/api/personal/file/6C78F81369EB477B98D540266E5F4F58?method=download&shareKey=a820cfe6f3d6ebd860f0dff1b3bf8ba8)
+
+用户属性：
+
+![image](https://note.youdao.com/yws/api/personal/file/74338146706B4DB18C392C58C6287257?method=download&shareKey=2ad9cd5685461de2d57b983e85d97612)
+
+评论属性：
+
+![image](https://note.youdao.com/yws/api/personal/file/012FA484A82F47F5834BDB3FF7F1F668?method=download&shareKey=e971a831c76926da204a87ec5ac41a48)
+
+留言属性：
+
+![image](https://note.youdao.com/yws/api/personal/file/DC140E28066C4A54BAF8CDD351B4E479?method=download&shareKey=a39cdf3a8661671ac1a5de0b27a3e855)
+
+友链属性：
+
+![image](https://note.youdao.com/yws/api/personal/file/D4A2CC8BA02C4CFAA1279A8C5BF95B83?method=download&shareKey=fc02df1a79a3d6086be94758c5370918)
+
+相册属性：
+
+![image](https://note.youdao.com/yws/api/personal/file/0648E5B2CA874903919E01F8854A36E4?method=download&shareKey=ef3e79e99d83615b6020eb8e9356c8c2)
+
+
+- 博客属性：标题、内容、首图、标记、浏览次数、赞赏开启、版权开启、评论开启、是否发布、创建时间、更新时间、描述
+- 分类属性：分类名称
+- 用户属性：昵称、用户名、密码、邮箱、类型、头像、创建时间、更新时间
+- 评论属性：昵称、邮箱、头像、评论内容、创建时间、博客id、父评论id、管理员id
+- 留言属性：昵称、邮箱、头像、留言内容、创建时间、父留言id、管理员id
+- 友链属性：网址、名称、创建时间、图片地址
+- 相册属性：图片地址、图片描述、图片名称、拍摄时间地点
+
+#### 4.表结构
+博客表：
+
+![image](https://note.youdao.com/yws/api/personal/file/6559F08528F24F7195279C5FEDF52644?method=download&shareKey=3aa33f0533b03214f163cd601fae0c9c)
+
+分类表：
+
+![image](https://note.youdao.com/yws/api/personal/file/D06135B93E2048B6924BD236BC255BDA?method=download&shareKey=f5f91a8cc8735f708cef2b1cae775231)
+
+用户表：
+
+![image](https://note.youdao.com/yws/api/personal/file/290F867E30DB4660B43DCF3DA29ED32F?method=download&shareKey=d180fe4a8e610b72bc250292a85ab1f9)
+
+评论表：
+
+![image](https://note.youdao.com/yws/api/personal/file/1B76BB89DD3545108A0116E9ABAFF35C?method=download&shareKey=44605f12ba7c296616de066f9d18edfc)
+
+
+留言表：
+
+![image](https://note.youdao.com/yws/api/personal/file/D29424D70CD44AD787B5B2BA74D0AEE2?method=download&shareKey=2070c81708cc3588f4de7fc303369df2)
+
+
+友链表：
+
+![image](https://note.youdao.com/yws/api/personal/file/0575501118154154BE53910A0D3F843B?method=download&shareKey=acf785dae919b80c235ddca9d6a1df38)
+
+
+相册表：
+
+![image](https://note.youdao.com/yws/api/personal/file/DE3BFFBA1DB5415F8C1B70E30B676BF0?method=download&shareKey=526904984ef591f552a72c6cb48e9404)
+
+
+
+
+#### 4.建表语句
+
+```sql
+/*
+ Navicat MySQL Data Transfer
+
+ Source Server         : myblog-localhost
+ Source Server Type    : MySQL
+ Source Server Version : 50717
+ Source Host           : localhost:3306
+ Source Schema         : myblog
+
+ Target Server Type    : MySQL
+ Target Server Version : 50717
+ File Encoding         : 65001
+
+ Date: 30/04/2020 17:02:10
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for t_blog
+-- ----------------------------
+DROP TABLE IF EXISTS `t_blog`;
+CREATE TABLE `t_blog`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `appreciation` bit(1) NOT NULL,
+  `commentabled` bit(1) NOT NULL,
+  `content` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `create_time` datetime(0) NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `first_picture` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `flag` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `published` bit(1) NOT NULL,
+  `recommend` bit(1) NOT NULL,
+  `share_statement` bit(1) NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `update_time` datetime(0) NULL DEFAULT NULL,
+  `views` int(11) NULL DEFAULT NULL,
+  `type_id` bigint(20) NULL DEFAULT NULL,
+  `user_id` bigint(20) NULL DEFAULT NULL,
+  `comment_count` int(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `FK292449gwg5yf7ocdlmswv9w4j`(`type_id`) USING BTREE,
+  INDEX `FK8ky5rrsxh01nkhctmo7d48p82`(`user_id`) USING BTREE,
+  CONSTRAINT `FK292449gwg5yf7ocdlmswv9w4j` FOREIGN KEY (`type_id`) REFERENCES `t_type` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK8ky5rrsxh01nkhctmo7d48p82` FOREIGN KEY (`user_id`) REFERENCES `t_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 62 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for t_comment
+-- ----------------------------
+DROP TABLE IF EXISTS `t_comment`;
+CREATE TABLE `t_comment`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `nickname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `avatar` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `create_time` datetime(0) NULL DEFAULT NULL,
+  `blog_id` bigint(20) NULL DEFAULT NULL,
+  `parent_comment_id` bigint(20) NULL DEFAULT NULL,
+  `admin_comment` bit(1) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 28 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for t_friend
+-- ----------------------------
+DROP TABLE IF EXISTS `t_friend`;
+CREATE TABLE `t_friend`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `blogaddress` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `blogname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `create_time` datetime(0) NULL DEFAULT NULL,
+  `pictureaddress` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 58 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for t_message
+-- ----------------------------
+DROP TABLE IF EXISTS `t_message`;
+CREATE TABLE `t_message`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `nickname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `avatar` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `create_time` datetime(0) NULL DEFAULT NULL,
+  `parent_message_id` bigint(20) NULL DEFAULT NULL,
+  `admin_message` bit(1) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 100 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for t_picture
+-- ----------------------------
+DROP TABLE IF EXISTS `t_picture`;
+CREATE TABLE `t_picture`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `pictureaddress` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `picturedescription` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `picturename` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `picturetime` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for t_type
+-- ----------------------------
+DROP TABLE IF EXISTS `t_type`;
+CREATE TABLE `t_type`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 58 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for t_user
+-- ----------------------------
+DROP TABLE IF EXISTS `t_user`;
+CREATE TABLE `t_user`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `avatar` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `create_time` datetime(0) NULL DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `nickname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `type` int(11) NULL DEFAULT NULL,
+  `update_time` datetime(0) NULL DEFAULT NULL,
+  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+```
+
+
+(String), 61(Long), https://picsum.photos/id/1016/800/450(String), 本文将从技术栈、功能需求、数据库设计来讲述(String), true(Boolean), true(Boolean), true(Boolean), true(Boolean), 2020-07-14 12:05:52.039(Timestamp), 63(Long)
+2020-07-14 12:05:52.195 DEBUG 10244 --- [http-nio-80-exec-4] com.pal.blog.dao.BlogDao.updateBlog      : <==    Updates: 1
+2020-07-14 12:05:52.240 DEBUG 10244 --- [http-nio-80-exec-9] c.p.b.dao.BlogDao.getAllBlogQuery_COUNT  : ==>  Preparing: SELECT count(0) FROM t_blog b LEFT OUTER JOIN t_type t ON b.type_id = t.id
+2020-07-14 12:05:52.240 DEBUG 10244 --- [http-nio-80-exec-9] c.p.b.dao.BlogDao.getAllBlogQuery_COUNT  : ==> Parameters: 
+2020-07-14 12:05:52.241 DEBUG 10244 --- [http-nio-80-exec-9] c.p.b.dao.BlogDao.getAllBlogQuery_COUNT  : <==      Total: 1
+2020-07-14 12:05:52.241 DEBUG 10244 --- [http-nio-80-exec-9] c.pal.blog.dao.BlogDao.getAllBlogQuery   : ==>  Preparing: SELECT b.id, b.title, b.update_time, b.recommend, b.published, b.type_id, t.id, t.name FROM t_blog b LEFT OUTER JOIN t_type t ON b.type_id = t.id order by update_time desc LIMIT ?
+2020-07-14 12:05:52.241 DEBUG 10244 --- [http-nio-80-exec-9] c.pal.blog.dao.BlogDao.getAllBlogQuery   : ==> Parameters: 10(Integer)
+2020-07-14 12:05:52.242 DEBUG 10244 --- [http-nio-80-exec-9] c.pal.blog.dao.BlogDao.getAllBlogQuery   : <==      Total: 1
+2020-07-14 12:05:52.243 DEBUG 10244 --- [http-nio-80-exec-9] com.pal.blog.dao.TypeDao.getAllType      : ==>  Preparing: select * from t_type
+2020-07-14 12:05:52.243 DEBUG 10244 --- [http-nio-80-exec-9] com.pal.blog.dao.TypeDao.getAllType      : ==> Parameters: 
+2020-07-14 12:05:52.244 DEBUG 10244 --- [http-nio-80-exec-9] com.pal.blog.dao.TypeDao.getAllType      : <==      Total: 6
+2020-07-14 12:05:59.691  INFO 10244 --- [http-nio-80-exec-2] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.index', args=[{}, 1, {}]}
+2020-07-14 12:05:59.692 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.d.BlogDao.getFirstPageBlog_COUNT   : ==>  Preparing: SELECT count(0) FROM t_blog b, t_type t, t_user u WHERE b.type_id = t.id AND u.id = b.user_id
+2020-07-14 12:05:59.692 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.d.BlogDao.getFirstPageBlog_COUNT   : ==> Parameters: 
+2020-07-14 12:05:59.693 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.d.BlogDao.getFirstPageBlog_COUNT   : <==      Total: 1
+2020-07-14 12:05:59.693 DEBUG 10244 --- [http-nio-80-exec-2] c.pal.blog.dao.BlogDao.getFirstPageBlog  : ==>  Preparing: select b.id,b.title,b.first_picture, b.views, b.comment_count,b.create_time,b.update_time,b.description, t.name , u.nickname, u.avatar from t_blog b, t_type t,t_user u where b.type_id = t.id and u.id = b.user_id order by b.create_time desc LIMIT ?
+2020-07-14 12:05:59.693 DEBUG 10244 --- [http-nio-80-exec-2] c.pal.blog.dao.BlogDao.getFirstPageBlog  : ==> Parameters: 10(Integer)
+2020-07-14 12:05:59.784 DEBUG 10244 --- [http-nio-80-exec-2] c.pal.blog.dao.BlogDao.getFirstPageBlog  : <==      Total: 1
+2020-07-14 12:05:59.784 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.dao.BlogDao.getAllRecommendBlog    : ==>  Preparing: select * from t_blog where t_blog.recommend = true order by t_blog.create_time desc limit 4;
+2020-07-14 12:05:59.784 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.dao.BlogDao.getAllRecommendBlog    : ==> Parameters: 
+2020-07-14 12:05:59.785 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.dao.BlogDao.getAllRecommendBlog    : <==      Total: 1
+2020-07-14 12:05:59.785  INFO 10244 --- [http-nio-80-exec-2] com.pal.blog.aspect.LogAspect            : Result : index
+2020-07-14 12:05:59.862  INFO 10244 --- [http-nio-80-exec-3] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/footer/blogmessage', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.blogMessage', args=[{}]}
+2020-07-14 12:05:59.862 DEBUG 10244 --- [http-nio-80-exec-3] com.pal.blog.dao.BlogDao.getBlogTotal    : ==>  Preparing: select count(*) from t_blog
+2020-07-14 12:05:59.862 DEBUG 10244 --- [http-nio-80-exec-3] com.pal.blog.dao.BlogDao.getBlogTotal    : ==> Parameters: 
+2020-07-14 12:05:59.864 DEBUG 10244 --- [http-nio-80-exec-3] com.pal.blog.dao.BlogDao.getBlogTotal    : <==      Total: 1
+2020-07-14 12:05:59.864 DEBUG 10244 --- [http-nio-80-exec-3] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==>  Preparing: select coalesce (sum(views),0) from t_blog
+2020-07-14 12:05:59.864 DEBUG 10244 --- [http-nio-80-exec-3] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==> Parameters: 
+2020-07-14 12:05:59.865 DEBUG 10244 --- [http-nio-80-exec-3] c.pal.blog.dao.BlogDao.getBlogViewTotal  : <==      Total: 1
+2020-07-14 12:05:59.865 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==>  Preparing: select count(*) from t_comment
+2020-07-14 12:05:59.865 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==> Parameters: 
+2020-07-14 12:05:59.868 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.dao.BlogDao.getBlogCommentTotal    : <==      Total: 1
+2020-07-14 12:05:59.868 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==>  Preparing: select count(*) from t_message
+2020-07-14 12:05:59.869 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==> Parameters: 
+2020-07-14 12:05:59.869 DEBUG 10244 --- [http-nio-80-exec-3] c.p.b.dao.BlogDao.getBlogMessageTotal    : <==      Total: 1
+2020-07-14 12:05:59.869  INFO 10244 --- [http-nio-80-exec-3] com.pal.blog.aspect.LogAspect            : Result : index :: blogMessage
+2020-07-14 12:06:02.487  INFO 10244 --- [http-nio-80-exec-4] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/blog/63', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.blog', args=[63, {}]}
+2020-07-14 12:06:02.488 DEBUG 10244 --- [http-nio-80-exec-4] c.pal.blog.dao.BlogDao.getDetailedBlog   : ==>  Preparing: select b.id bid,b.first_picture,b.flag,b.title,b.content,b.views,b.comment_count,b.update_time,b.commentabled,b.share_statement,b.appreciation, u.nickname,u.avatar,t.name from t_blog b,t_user u, t_type t where b.user_id = u.id and b.type_id = t.id and b.id = ?
+2020-07-14 12:06:02.488 DEBUG 10244 --- [http-nio-80-exec-4] c.pal.blog.dao.BlogDao.getDetailedBlog   : ==> Parameters: 63(Long)
+2020-07-14 12:06:02.490 DEBUG 10244 --- [http-nio-80-exec-4] c.pal.blog.dao.BlogDao.getDetailedBlog   : <==      Total: 1
+2020-07-14 12:06:02.496 DEBUG 10244 --- [http-nio-80-exec-4] com.pal.blog.dao.BlogDao.updateViews     : ==>  Preparing: update t_blog b set b.views = b.views+1 where b.id = ?
+2020-07-14 12:06:02.496 DEBUG 10244 --- [http-nio-80-exec-4] com.pal.blog.dao.BlogDao.updateViews     : ==> Parameters: 63(Long)
+2020-07-14 12:06:02.720 DEBUG 10244 --- [http-nio-80-exec-4] com.pal.blog.dao.BlogDao.updateViews     : <==    Updates: 1
+2020-07-14 12:06:02.721 DEBUG 10244 --- [http-nio-80-exec-4] c.p.b.dao.BlogDao.getCommentCountById    : ==>  Preparing: update t_blog b set b.comment_count = ( select count(*) from t_comment c where c.blog_id = ? and b.id = ? ) WHERE b.id = ?
+2020-07-14 12:06:02.721 DEBUG 10244 --- [http-nio-80-exec-4] c.p.b.dao.BlogDao.getCommentCountById    : ==> Parameters: 63(Long), 63(Long), 63(Long)
+2020-07-14 12:06:02.722 DEBUG 10244 --- [http-nio-80-exec-4] c.p.b.dao.BlogDao.getCommentCountById    : <==    Updates: 1
+2020-07-14 12:06:02.722  INFO 10244 --- [http-nio-80-exec-4] com.pal.blog.aspect.LogAspect            : Result : blog
+2020-07-14 12:06:03.041  INFO 10244 --- [http-nio-80-exec-6] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/footer/blogmessage', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.blogMessage', args=[{}]}
+2020-07-14 12:06:03.041 DEBUG 10244 --- [http-nio-80-exec-6] com.pal.blog.dao.BlogDao.getBlogTotal    : ==>  Preparing: select count(*) from t_blog
+2020-07-14 12:06:03.041 DEBUG 10244 --- [http-nio-80-exec-6] com.pal.blog.dao.BlogDao.getBlogTotal    : ==> Parameters: 
+2020-07-14 12:06:03.042 DEBUG 10244 --- [http-nio-80-exec-6] com.pal.blog.dao.BlogDao.getBlogTotal    : <==      Total: 1
+2020-07-14 12:06:03.042 DEBUG 10244 --- [http-nio-80-exec-6] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==>  Preparing: select coalesce (sum(views),0) from t_blog
+2020-07-14 12:06:03.043 DEBUG 10244 --- [http-nio-80-exec-6] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==> Parameters: 
+2020-07-14 12:06:03.043 DEBUG 10244 --- [http-nio-80-exec-6] c.pal.blog.dao.BlogDao.getBlogViewTotal  : <==      Total: 1
+2020-07-14 12:06:03.043 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==>  Preparing: select count(*) from t_comment
+2020-07-14 12:06:03.043 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==> Parameters: 
+2020-07-14 12:06:03.044 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.dao.BlogDao.getBlogCommentTotal    : <==      Total: 1
+2020-07-14 12:06:03.045 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==>  Preparing: select count(*) from t_message
+2020-07-14 12:06:03.045 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==> Parameters: 
+2020-07-14 12:06:03.045 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.dao.BlogDao.getBlogMessageTotal    : <==      Total: 1
+2020-07-14 12:06:03.045  INFO 10244 --- [http-nio-80-exec-6] com.pal.blog.aspect.LogAspect            : Result : index :: blogMessage
+2020-07-14 12:06:03.156  INFO 10244 --- [http-nio-80-exec-2] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/comments/63', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.CommentController.comments', args=[63, {}]}
+2020-07-14 12:06:03.157 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.d.C.findByBlogIdParentIdNull       : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 12:06:03.157 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.d.C.findByBlogIdParentIdNull       : ==> Parameters: 63(Long), -1(Long)
+2020-07-14 12:06:03.159 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.d.C.findByBlogIdParentIdNull       : <==      Total: 1
+2020-07-14 12:06:03.160 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.d.C.findByBlogIdParentIdNotNull    : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 12:06:03.161 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.d.C.findByBlogIdParentIdNotNull    : ==> Parameters: 63(Long), 28(Long)
+2020-07-14 12:06:03.162 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.d.C.findByBlogIdParentIdNotNull    : <==      Total: 1
+2020-07-14 12:06:03.163 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.d.C.findByBlogIdAndReplayId        : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 12:06:03.164 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.d.C.findByBlogIdAndReplayId        : ==> Parameters: 63(Long), 29(Long)
+2020-07-14 12:06:03.166 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.d.C.findByBlogIdAndReplayId        : <==      Total: 1
+2020-07-14 12:06:03.166 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.d.C.findByBlogIdAndReplayId        : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 12:06:03.167 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.d.C.findByBlogIdAndReplayId        : ==> Parameters: 63(Long), 30(Long)
+2020-07-14 12:06:03.168 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.d.C.findByBlogIdAndReplayId        : <==      Total: 1
+2020-07-14 12:06:03.169 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.d.C.findByBlogIdAndReplayId        : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 12:06:03.171 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.d.C.findByBlogIdAndReplayId        : ==> Parameters: 63(Long), 31(Long)
+2020-07-14 12:06:03.172 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.d.C.findByBlogIdAndReplayId        : <==      Total: 0
+2020-07-14 12:06:03.173  INFO 10244 --- [http-nio-80-exec-2] com.pal.blog.aspect.LogAspect            : Result : blog :: commentList
+2020-07-14 12:06:29.812 DEBUG 10244 --- [http-nio-80-exec-4] com.pal.blog.dao.BlogDao.getBlogById     : ==>  Preparing: select b.id,b.flag,b.title,b.content,b.type_id, b.first_picture,b.description,b.recommend,b.published,b.share_statement, b.appreciation,b.commentabled from t_blog b where b.id = ?;
+2020-07-14 12:06:29.812 DEBUG 10244 --- [http-nio-80-exec-4] com.pal.blog.dao.BlogDao.getBlogById     : ==> Parameters: 63(Long)
+2020-07-14 12:06:29.813 DEBUG 10244 --- [http-nio-80-exec-4] com.pal.blog.dao.BlogDao.getBlogById     : <==      Total: 1
+2020-07-14 12:06:29.814 DEBUG 10244 --- [http-nio-80-exec-4] com.pal.blog.dao.TypeDao.getAllType      : ==>  Preparing: select * from t_type
+2020-07-14 12:06:29.815 DEBUG 10244 --- [http-nio-80-exec-4] com.pal.blog.dao.TypeDao.getAllType      : ==> Parameters: 
+2020-07-14 12:06:29.816 DEBUG 10244 --- [http-nio-80-exec-4] com.pal.blog.dao.TypeDao.getAllType      : <==      Total: 6
+2020-07-14 12:08:19.928  WARN 10244 --- [http-nio-80-exec-1] o.springframework.validation.DataBinder  : Skipping URI variable 'id' because request contains bind value with same name.
+2020-07-14 12:08:19.930 DEBUG 10244 --- [http-nio-80-exec-1] com.pal.blog.dao.BlogDao.updateBlog      : ==>  Preparing: update t_blog set published = ?,flag = ? , title = ?, content = ?, type_id = ?, first_picture = ? , description = ? , recommend = ? , share_statement = ?, appreciation = ?, commentabled = ? ,update_time = ? where id = ?;
+2020-07-14 12:08:19.931 DEBUG 10244 --- [http-nio-80-exec-1] com.pal.blog.dao.BlogDao.updateBlog      : ==> Parameters: true(Boolean), (String), 个人博客系统（SpringBoot+Mybatis）(String), ### 一、技术栈
+#### 1.前端
+- JS框架：JQuery
+- CSS框架：[Semantic UI官网](https://semantic-ui.com/)
+- Markdown编辑器：[编辑器 Markdown](https://pandao.github.io/editor.md/)
+- 代码高亮：[代码高亮 prism](https://github.com/PrismJS/prism)
+- 动画效果：[动画 animate.css](https://daneden.github.io/animate.css/)
+- 文章目录：[目录生成 Tocbot](https://tscanlin.github.io/tocbot/)
+- 音乐盒[：zplayer](https://gitee.com/supperzh/zplayer)
+- 照片墙[：lightbox插件](https://github.com/JavaScript-Kit/jkresponsivegallery)
+
+#### 2.后端
+- 核心框架：SpringBoot 2.2.5
+- 项目构建：jdk1.8、Maven 3
+- 持久层框架：Mybatis
+- 模板框架：Thymeleaf
+- 分页插件：PageHelper
+- 加密：MD5加密
+
+#### 3.数据库
+- MySQL 5.7
+
+### 二、功能需求
+因为是个人博客，所以没有做用户权限管理，只是简单的区分了一下普通用户和管理员用户，这里就根据普通用户和管理员用户来讲述功能需求.
+
+#### 1.普通用户
+- 查看文章信息：文章列表、推荐文章、文章标题、文章内容、发布时间、访问量以及评论等信息
+- 查看分类文章：分类列表、分类文章信息
+- 查看时间轴：按照文章时间发布顺序查看文章
+- 搜索文章：导航栏右边搜索框根据关键字搜索
+- 听音乐：上一曲、下一曲、音量控制、播放顺序控制、查看歌词等
+- 留言：留言并回复
+- 查看友链：查看并访问博主在友链页面添加的友链连接
+- 查看相册信息：相册列表、照片名称、照片拍摄地点、时间、照片描述
+
+#### 2.管理员用户（栈主）
+- 拥有普通用户所有功能权限
+- 登录：在主页路径下加“/admin”，可进入登录页面，根据数据库的用户名和密码进行登录
+- 文章管理：查询文章列表、新增文章、编辑文章、删除文章、搜索文章
+- 分类管理：查询分类列表、新增分类、编辑分类、删除分类
+- 友链管理：查询友链列表、新增友链、编辑友链、删除友链
+- 相册管理：查询相册列表、新增照片、编辑照片、删除照片
+- 消息管理：登录后恢复评论留言会显示栈主的头像信息，并能显示删除消息按键，可以对消息进行删除
+
+### 三、数据库设计
+
+#### 1.数据表
+- 博客数据表：t_blog
+- 分类数据表：t_type
+- 用户数据表：t_user
+- 评论数据表：t_comment
+- 留言数据表：t_message
+- 友链数据表：t_friend
+- 相册数据表：t_picture
+
+#### 2.实体关系
+
+![image](https://note.youdao.com/yws/api/personal/file/CACBEF653E6745BF834B892952BFA816?method=download&shareKey=946ce6c8c2a0c84b107053cc254088f2)
+
+- 博客和分类是多对一的关系：一个博客对应一个分类，一个分类可以对应多个博客
+- 博客和用户是多对一的关系：一个博客对应一个用户，一个用户可以对应多个博客
+- 博客和评论是一对多的关系：一个博客可以对应多个评论，一个评论对应一个博客
+- 评论和回复是一对多的关系：一个评论可以对应多个回复，一个回复对应一个评论
+
+> 留言和评论是一样的，还有友链和相册数据表和其他表没有关联
+
+#### 3.实体属性
+博客属性：
+
+![image](https://note.youdao.com/yws/api/personal/file/CF5106DE22344BB481B3412A5BFAAAB9?method=download&shareKey=ae43526cd18465a53011fccbbe6e25c8)
+
+分类属性：
+
+![image](https://note.youdao.com/yws/api/personal/file/6C78F81369EB477B98D540266E5F4F58?method=download&shareKey=a820cfe6f3d6ebd860f0dff1b3bf8ba8)
+
+用户属性：
+
+![image](https://note.youdao.com/yws/api/personal/file/74338146706B4DB18C392C58C6287257?method=download&shareKey=2ad9cd5685461de2d57b983e85d97612)
+
+评论属性：
+
+![image](https://note.youdao.com/yws/api/personal/file/012FA484A82F47F5834BDB3FF7F1F668?method=download&shareKey=e971a831c76926da204a87ec5ac41a48)
+
+留言属性：
+
+![image](https://note.youdao.com/yws/api/personal/file/DC140E28066C4A54BAF8CDD351B4E479?method=download&shareKey=a39cdf3a8661671ac1a5de0b27a3e855)
+
+友链属性：
+
+![image](https://note.youdao.com/yws/api/personal/file/D4A2CC8BA02C4CFAA1279A8C5BF95B83?method=download&shareKey=fc02df1a79a3d6086be94758c5370918)
+
+相册属性：
+
+![image](https://note.youdao.com/yws/api/personal/file/0648E5B2CA874903919E01F8854A36E4?method=download&shareKey=ef3e79e99d83615b6020eb8e9356c8c2)
+
+
+- 博客属性：标题、内容、首图、标记、浏览次数、赞赏开启、版权开启、评论开启、是否发布、创建时间、更新时间、描述
+- 分类属性：分类名称
+- 用户属性：昵称、用户名、密码、邮箱、类型、头像、创建时间、更新时间
+- 评论属性：昵称、邮箱、头像、评论内容、创建时间、博客id、父评论id、管理员id
+- 留言属性：昵称、邮箱、头像、留言内容、创建时间、父留言id、管理员id
+- 友链属性：网址、名称、创建时间、图片地址
+- 相册属性：图片地址、图片描述、图片名称、拍摄时间地点
+
+#### 4.表结构
+博客表：
+
+![image](https://note.youdao.com/yws/api/personal/file/6559F08528F24F7195279C5FEDF52644?method=download&shareKey=3aa33f0533b03214f163cd601fae0c9c)
+
+分类表：
+
+![image](https://note.youdao.com/yws/api/personal/file/D06135B93E2048B6924BD236BC255BDA?method=download&shareKey=f5f91a8cc8735f708cef2b1cae775231)
+
+用户表：
+
+![image](https://note.youdao.com/yws/api/personal/file/290F867E30DB4660B43DCF3DA29ED32F?method=download&shareKey=d180fe4a8e610b72bc250292a85ab1f9)
+
+评论表：
+
+![image](https://note.youdao.com/yws/api/personal/file/1B76BB89DD3545108A0116E9ABAFF35C?method=download&shareKey=44605f12ba7c296616de066f9d18edfc)
+
+
+留言表：
+
+![image](https://note.youdao.com/yws/api/personal/file/D29424D70CD44AD787B5B2BA74D0AEE2?method=download&shareKey=2070c81708cc3588f4de7fc303369df2)
+
+
+友链表：
+
+![image](https://note.youdao.com/yws/api/personal/file/0575501118154154BE53910A0D3F843B?method=download&shareKey=acf785dae919b80c235ddca9d6a1df38)
+
+
+相册表：
+
+![image](https://note.youdao.com/yws/api/personal/file/DE3BFFBA1DB5415F8C1B70E30B676BF0?method=download&shareKey=526904984ef591f552a72c6cb48e9404)
+
+
+
+
+#### 4.建表语句
+
+```sql
+/*
+ Navicat MySQL Data Transfer
+
+ Source Server         : myblog-localhost
+ Source Server Type    : MySQL
+ Source Server Version : 50717
+ Source Host           : localhost:3306
+ Source Schema         : myblog
+
+ Target Server Type    : MySQL
+ Target Server Version : 50717
+ File Encoding         : 65001
+
+ Date: 30/04/2020 17:02:10
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for t_blog
+-- ----------------------------
+DROP TABLE IF EXISTS `t_blog`;
+CREATE TABLE `t_blog`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `appreciation` bit(1) NOT NULL,
+  `commentabled` bit(1) NOT NULL,
+  `content` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `create_time` datetime(0) NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `first_picture` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `flag` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `published` bit(1) NOT NULL,
+  `recommend` bit(1) NOT NULL,
+  `share_statement` bit(1) NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `update_time` datetime(0) NULL DEFAULT NULL,
+  `views` int(11) NULL DEFAULT NULL,
+  `type_id` bigint(20) NULL DEFAULT NULL,
+  `user_id` bigint(20) NULL DEFAULT NULL,
+  `comment_count` int(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `FK292449gwg5yf7ocdlmswv9w4j`(`type_id`) USING BTREE,
+  INDEX `FK8ky5rrsxh01nkhctmo7d48p82`(`user_id`) USING BTREE,
+  CONSTRAINT `FK292449gwg5yf7ocdlmswv9w4j` FOREIGN KEY (`type_id`) REFERENCES `t_type` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK8ky5rrsxh01nkhctmo7d48p82` FOREIGN KEY (`user_id`) REFERENCES `t_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 62 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for t_comment
+-- ----------------------------
+DROP TABLE IF EXISTS `t_comment`;
+CREATE TABLE `t_comment`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `nickname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `avatar` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `create_time` datetime(0) NULL DEFAULT NULL,
+  `blog_id` bigint(20) NULL DEFAULT NULL,
+  `parent_comment_id` bigint(20) NULL DEFAULT NULL,
+  `admin_comment` bit(1) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 28 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for t_friend
+-- ----------------------------
+DROP TABLE IF EXISTS `t_friend`;
+CREATE TABLE `t_friend`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `blogaddress` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `blogname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `create_time` datetime(0) NULL DEFAULT NULL,
+  `pictureaddress` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 58 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for t_message
+-- ----------------------------
+DROP TABLE IF EXISTS `t_message`;
+CREATE TABLE `t_message`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `nickname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `avatar` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `create_time` datetime(0) NULL DEFAULT NULL,
+  `parent_message_id` bigint(20) NULL DEFAULT NULL,
+  `admin_message` bit(1) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 100 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for t_picture
+-- ----------------------------
+DROP TABLE IF EXISTS `t_picture`;
+CREATE TABLE `t_picture`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `pictureaddress` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `picturedescription` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `picturename` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `picturetime` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for t_type
+-- ----------------------------
+DROP TABLE IF EXISTS `t_type`;
+CREATE TABLE `t_type`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 58 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for t_user
+-- ----------------------------
+DROP TABLE IF EXISTS `t_user`;
+CREATE TABLE `t_user`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `avatar` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `create_time` datetime(0) NULL DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `nickname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `type` int(11) NULL DEFAULT NULL,
+  `update_time` datetime(0) NULL DEFAULT NULL,
+  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+```
+
+
+(String), 61(Long), https://picsum.photos/id/1016/800/450(String), 本文将从技术栈、功能需求、数据库设计来讲述(String), true(Boolean), true(Boolean), true(Boolean), true(Boolean), 2020-07-14 12:08:19.929(Timestamp), 63(Long)
+2020-07-14 12:08:20.158 DEBUG 10244 --- [http-nio-80-exec-1] com.pal.blog.dao.BlogDao.updateBlog      : <==    Updates: 1
+2020-07-14 12:08:20.163 DEBUG 10244 --- [http-nio-80-exec-5] c.p.b.dao.BlogDao.getAllBlogQuery_COUNT  : ==>  Preparing: SELECT count(0) FROM t_blog b LEFT OUTER JOIN t_type t ON b.type_id = t.id
+2020-07-14 12:08:20.163 DEBUG 10244 --- [http-nio-80-exec-5] c.p.b.dao.BlogDao.getAllBlogQuery_COUNT  : ==> Parameters: 
+2020-07-14 12:08:20.163 DEBUG 10244 --- [http-nio-80-exec-5] c.p.b.dao.BlogDao.getAllBlogQuery_COUNT  : <==      Total: 1
+2020-07-14 12:08:20.164 DEBUG 10244 --- [http-nio-80-exec-5] c.pal.blog.dao.BlogDao.getAllBlogQuery   : ==>  Preparing: SELECT b.id, b.title, b.update_time, b.recommend, b.published, b.type_id, t.id, t.name FROM t_blog b LEFT OUTER JOIN t_type t ON b.type_id = t.id order by update_time desc LIMIT ?
+2020-07-14 12:08:20.164 DEBUG 10244 --- [http-nio-80-exec-5] c.pal.blog.dao.BlogDao.getAllBlogQuery   : ==> Parameters: 10(Integer)
+2020-07-14 12:08:20.165 DEBUG 10244 --- [http-nio-80-exec-5] c.pal.blog.dao.BlogDao.getAllBlogQuery   : <==      Total: 1
+2020-07-14 12:08:20.165 DEBUG 10244 --- [http-nio-80-exec-5] com.pal.blog.dao.TypeDao.getAllType      : ==>  Preparing: select * from t_type
+2020-07-14 12:08:20.165 DEBUG 10244 --- [http-nio-80-exec-5] com.pal.blog.dao.TypeDao.getAllType      : ==> Parameters: 
+2020-07-14 12:08:20.166 DEBUG 10244 --- [http-nio-80-exec-5] com.pal.blog.dao.TypeDao.getAllType      : <==      Total: 6
+2020-07-14 12:08:24.863  INFO 10244 --- [http-nio-80-exec-10] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/blog/63', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.blog', args=[63, {}]}
+2020-07-14 12:08:24.863 DEBUG 10244 --- [http-nio-80-exec-10] c.pal.blog.dao.BlogDao.getDetailedBlog   : ==>  Preparing: select b.id bid,b.first_picture,b.flag,b.title,b.content,b.views,b.comment_count,b.update_time,b.commentabled,b.share_statement,b.appreciation, u.nickname,u.avatar,t.name from t_blog b,t_user u, t_type t where b.user_id = u.id and b.type_id = t.id and b.id = ?
+2020-07-14 12:08:24.863 DEBUG 10244 --- [http-nio-80-exec-10] c.pal.blog.dao.BlogDao.getDetailedBlog   : ==> Parameters: 63(Long)
+2020-07-14 12:08:24.864 DEBUG 10244 --- [http-nio-80-exec-10] c.pal.blog.dao.BlogDao.getDetailedBlog   : <==      Total: 1
+2020-07-14 12:08:24.867 DEBUG 10244 --- [http-nio-80-exec-10] com.pal.blog.dao.BlogDao.updateViews     : ==>  Preparing: update t_blog b set b.views = b.views+1 where b.id = ?
+2020-07-14 12:08:24.867 DEBUG 10244 --- [http-nio-80-exec-10] com.pal.blog.dao.BlogDao.updateViews     : ==> Parameters: 63(Long)
+2020-07-14 12:08:25.143 DEBUG 10244 --- [http-nio-80-exec-10] com.pal.blog.dao.BlogDao.updateViews     : <==    Updates: 1
+2020-07-14 12:08:25.143 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.dao.BlogDao.getCommentCountById    : ==>  Preparing: update t_blog b set b.comment_count = ( select count(*) from t_comment c where c.blog_id = ? and b.id = ? ) WHERE b.id = ?
+2020-07-14 12:08:25.143 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.dao.BlogDao.getCommentCountById    : ==> Parameters: 63(Long), 63(Long), 63(Long)
+2020-07-14 12:08:25.144 DEBUG 10244 --- [http-nio-80-exec-10] c.p.b.dao.BlogDao.getCommentCountById    : <==    Updates: 1
+2020-07-14 12:08:25.144  INFO 10244 --- [http-nio-80-exec-10] com.pal.blog.aspect.LogAspect            : Result : blog
+2020-07-14 12:08:25.449  INFO 10244 --- [http-nio-80-exec-2] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/footer/blogmessage', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.blogMessage', args=[{}]}
+2020-07-14 12:08:25.449 DEBUG 10244 --- [http-nio-80-exec-2] com.pal.blog.dao.BlogDao.getBlogTotal    : ==>  Preparing: select count(*) from t_blog
+2020-07-14 12:08:25.449 DEBUG 10244 --- [http-nio-80-exec-2] com.pal.blog.dao.BlogDao.getBlogTotal    : ==> Parameters: 
+2020-07-14 12:08:25.451 DEBUG 10244 --- [http-nio-80-exec-2] com.pal.blog.dao.BlogDao.getBlogTotal    : <==      Total: 1
+2020-07-14 12:08:25.451 DEBUG 10244 --- [http-nio-80-exec-2] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==>  Preparing: select coalesce (sum(views),0) from t_blog
+2020-07-14 12:08:25.451 DEBUG 10244 --- [http-nio-80-exec-2] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==> Parameters: 
+2020-07-14 12:08:25.452 DEBUG 10244 --- [http-nio-80-exec-2] c.pal.blog.dao.BlogDao.getBlogViewTotal  : <==      Total: 1
+2020-07-14 12:08:25.452 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==>  Preparing: select count(*) from t_comment
+2020-07-14 12:08:25.453 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==> Parameters: 
+2020-07-14 12:08:25.511 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.dao.BlogDao.getBlogCommentTotal    : <==      Total: 1
+2020-07-14 12:08:25.512 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==>  Preparing: select count(*) from t_message
+2020-07-14 12:08:25.512 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==> Parameters: 
+2020-07-14 12:08:25.512 DEBUG 10244 --- [http-nio-80-exec-2] c.p.b.dao.BlogDao.getBlogMessageTotal    : <==      Total: 1
+2020-07-14 12:08:25.512  INFO 10244 --- [http-nio-80-exec-2] com.pal.blog.aspect.LogAspect            : Result : index :: blogMessage
+2020-07-14 12:08:25.565  INFO 10244 --- [http-nio-80-exec-6] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/comments/63', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.CommentController.comments', args=[63, {}]}
+2020-07-14 12:08:25.565 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdParentIdNull       : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 12:08:25.565 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdParentIdNull       : ==> Parameters: 63(Long), -1(Long)
+2020-07-14 12:08:25.566 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdParentIdNull       : <==      Total: 1
+2020-07-14 12:08:25.567 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdParentIdNotNull    : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 12:08:25.567 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdParentIdNotNull    : ==> Parameters: 63(Long), 28(Long)
+2020-07-14 12:08:25.568 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdParentIdNotNull    : <==      Total: 1
+2020-07-14 12:08:25.569 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdAndReplayId        : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 12:08:25.569 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdAndReplayId        : ==> Parameters: 63(Long), 29(Long)
+2020-07-14 12:08:25.570 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdAndReplayId        : <==      Total: 1
+2020-07-14 12:08:25.570 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdAndReplayId        : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 12:08:25.571 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdAndReplayId        : ==> Parameters: 63(Long), 30(Long)
+2020-07-14 12:08:25.572 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdAndReplayId        : <==      Total: 1
+2020-07-14 12:08:25.576 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdAndReplayId        : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 12:08:25.577 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdAndReplayId        : ==> Parameters: 63(Long), 31(Long)
+2020-07-14 12:08:25.578 DEBUG 10244 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdAndReplayId        : <==      Total: 0
+2020-07-14 12:08:25.578  INFO 10244 --- [http-nio-80-exec-6] com.pal.blog.aspect.LogAspect            : Result : blog :: commentList
+2020-07-14 12:09:13.995  INFO 10244 --- [http-nio-80-exec-1] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.index', args=[{}, 1, {}]}
+2020-07-14 12:09:13.996 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.d.BlogDao.getFirstPageBlog_COUNT   : ==>  Preparing: SELECT count(0) FROM t_blog b, t_type t, t_user u WHERE b.type_id = t.id AND u.id = b.user_id
+2020-07-14 12:09:13.996 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.d.BlogDao.getFirstPageBlog_COUNT   : ==> Parameters: 
+2020-07-14 12:09:13.996 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.d.BlogDao.getFirstPageBlog_COUNT   : <==      Total: 1
+2020-07-14 12:09:13.996 DEBUG 10244 --- [http-nio-80-exec-1] c.pal.blog.dao.BlogDao.getFirstPageBlog  : ==>  Preparing: select b.id,b.title,b.first_picture, b.views, b.comment_count,b.create_time,b.update_time,b.description, t.name , u.nickname, u.avatar from t_blog b, t_type t,t_user u where b.type_id = t.id and u.id = b.user_id order by b.create_time desc LIMIT ?
+2020-07-14 12:09:13.997 DEBUG 10244 --- [http-nio-80-exec-1] c.pal.blog.dao.BlogDao.getFirstPageBlog  : ==> Parameters: 10(Integer)
+2020-07-14 12:09:13.997 DEBUG 10244 --- [http-nio-80-exec-1] c.pal.blog.dao.BlogDao.getFirstPageBlog  : <==      Total: 1
+2020-07-14 12:09:13.997 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.dao.BlogDao.getAllRecommendBlog    : ==>  Preparing: select * from t_blog where t_blog.recommend = true order by t_blog.create_time desc limit 4;
+2020-07-14 12:09:13.998 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.dao.BlogDao.getAllRecommendBlog    : ==> Parameters: 
+2020-07-14 12:09:13.998 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.dao.BlogDao.getAllRecommendBlog    : <==      Total: 1
+2020-07-14 12:09:13.998  INFO 10244 --- [http-nio-80-exec-1] com.pal.blog.aspect.LogAspect            : Result : index
+2020-07-14 12:09:14.061  INFO 10244 --- [http-nio-80-exec-1] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/footer/blogmessage', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.blogMessage', args=[{}]}
+2020-07-14 12:09:14.062 DEBUG 10244 --- [http-nio-80-exec-1] com.pal.blog.dao.BlogDao.getBlogTotal    : ==>  Preparing: select count(*) from t_blog
+2020-07-14 12:09:14.062 DEBUG 10244 --- [http-nio-80-exec-1] com.pal.blog.dao.BlogDao.getBlogTotal    : ==> Parameters: 
+2020-07-14 12:09:14.063 DEBUG 10244 --- [http-nio-80-exec-1] com.pal.blog.dao.BlogDao.getBlogTotal    : <==      Total: 1
+2020-07-14 12:09:14.063 DEBUG 10244 --- [http-nio-80-exec-1] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==>  Preparing: select coalesce (sum(views),0) from t_blog
+2020-07-14 12:09:14.063 DEBUG 10244 --- [http-nio-80-exec-1] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==> Parameters: 
+2020-07-14 12:09:14.064 DEBUG 10244 --- [http-nio-80-exec-1] c.pal.blog.dao.BlogDao.getBlogViewTotal  : <==      Total: 1
+2020-07-14 12:09:14.064 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==>  Preparing: select count(*) from t_comment
+2020-07-14 12:09:14.064 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==> Parameters: 
+2020-07-14 12:09:14.065 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.dao.BlogDao.getBlogCommentTotal    : <==      Total: 1
+2020-07-14 12:09:14.066 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==>  Preparing: select count(*) from t_message
+2020-07-14 12:09:14.066 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==> Parameters: 
+2020-07-14 12:09:14.066 DEBUG 10244 --- [http-nio-80-exec-1] c.p.b.dao.BlogDao.getBlogMessageTotal    : <==      Total: 1
+2020-07-14 12:09:14.066  INFO 10244 --- [http-nio-80-exec-1] com.pal.blog.aspect.LogAspect            : Result : index :: blogMessage
+2020-07-14 12:57:46.886  INFO 688 --- [restartedMain] com.pal.blog.BlogApplication             : Starting BlogApplication on LAPTOP-3TMQ3A72 with PID 688 (D:\panal\jetbrains\apps\IDEA-U\workspace\blog-mybatis\target\classes started by panal in D:\panal\jetbrains\apps\IDEA-U\workspace\blog-mybatis)
+2020-07-14 12:57:46.888 DEBUG 688 --- [restartedMain] com.pal.blog.BlogApplication             : Running with Spring Boot v2.2.8.RELEASE, Spring v5.2.7.RELEASE
+2020-07-14 12:57:46.888  INFO 688 --- [restartedMain] com.pal.blog.BlogApplication             : The following profiles are active: dev
+2020-07-14 12:57:46.927  INFO 688 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-07-14 12:57:46.928  INFO 688 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-07-14 12:57:47.841  INFO 688 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+2020-07-14 12:57:47.858  INFO 688 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-07-14 12:57:47.858  INFO 688 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.36]
+2020-07-14 12:57:47.918  INFO 688 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-07-14 12:57:47.919  INFO 688 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 990 ms
+2020-07-14 12:57:48.385  INFO 688 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-07-14 12:57:48.475  INFO 688 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-07-14 12:57:48.813  INFO 688 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-07-14 12:57:48.846  INFO 688 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path ''
+2020-07-14 12:57:48.849  INFO 688 --- [restartedMain] com.pal.blog.BlogApplication             : Started BlogApplication in 2.668 seconds (JVM running for 3.628)
+2020-07-14 12:57:52.035  INFO 688 --- [http-nio-80-exec-1] o.apache.tomcat.util.http.parser.Cookie  : A cookie header was received [1594595971; JSESSIONID=F0D5B628366839E6E0C692251D3CA173] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+2020-07-14 12:57:52.041  INFO 688 --- [http-nio-80-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-14 12:57:52.041  INFO 688 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-07-14 12:57:52.053  INFO 688 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 12 ms
+2020-07-14 12:57:52.074  INFO 688 --- [http-nio-80-exec-1] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.index', args=[{}, 1, {}]}
+2020-07-14 12:57:52.105  INFO 688 --- [http-nio-80-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-07-14 12:57:52.222  INFO 688 --- [http-nio-80-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-07-14 12:57:52.227 DEBUG 688 --- [http-nio-80-exec-1] c.p.b.d.BlogDao.getFirstPageBlog_COUNT   : ==>  Preparing: SELECT count(0) FROM t_blog b, t_type t, t_user u WHERE b.type_id = t.id AND u.id = b.user_id
+2020-07-14 12:57:52.241 DEBUG 688 --- [http-nio-80-exec-1] c.p.b.d.BlogDao.getFirstPageBlog_COUNT   : ==> Parameters: 
+2020-07-14 12:57:52.348 DEBUG 688 --- [http-nio-80-exec-1] c.p.b.d.BlogDao.getFirstPageBlog_COUNT   : <==      Total: 1
+2020-07-14 12:57:52.352 DEBUG 688 --- [http-nio-80-exec-1] c.pal.blog.dao.BlogDao.getFirstPageBlog  : ==>  Preparing: select b.id,b.title,b.first_picture, b.views, b.comment_count,b.create_time,b.update_time,b.description, t.name , u.nickname, u.avatar from t_blog b, t_type t,t_user u where b.type_id = t.id and u.id = b.user_id order by b.create_time desc LIMIT ?
+2020-07-14 12:57:52.352 DEBUG 688 --- [http-nio-80-exec-1] c.pal.blog.dao.BlogDao.getFirstPageBlog  : ==> Parameters: 10(Integer)
+2020-07-14 12:57:52.354 DEBUG 688 --- [http-nio-80-exec-1] c.pal.blog.dao.BlogDao.getFirstPageBlog  : <==      Total: 1
+2020-07-14 12:57:52.356 DEBUG 688 --- [http-nio-80-exec-1] c.p.b.dao.BlogDao.getAllRecommendBlog    : ==>  Preparing: select * from t_blog where t_blog.recommend = true order by t_blog.create_time desc limit 4;
+2020-07-14 12:57:52.356 DEBUG 688 --- [http-nio-80-exec-1] c.p.b.dao.BlogDao.getAllRecommendBlog    : ==> Parameters: 
+2020-07-14 12:57:52.358 DEBUG 688 --- [http-nio-80-exec-1] c.p.b.dao.BlogDao.getAllRecommendBlog    : <==      Total: 1
+2020-07-14 12:57:52.359  INFO 688 --- [http-nio-80-exec-1] com.pal.blog.aspect.LogAspect            : Result : index
+2020-07-14 12:57:52.772  INFO 688 --- [http-nio-80-exec-6] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/footer/blogmessage', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.blogMessage', args=[{}]}
+2020-07-14 12:57:52.773 DEBUG 688 --- [http-nio-80-exec-6] com.pal.blog.dao.BlogDao.getBlogTotal    : ==>  Preparing: select count(*) from t_blog
+2020-07-14 12:57:52.773 DEBUG 688 --- [http-nio-80-exec-6] com.pal.blog.dao.BlogDao.getBlogTotal    : ==> Parameters: 
+2020-07-14 12:57:52.869 DEBUG 688 --- [http-nio-80-exec-6] com.pal.blog.dao.BlogDao.getBlogTotal    : <==      Total: 1
+2020-07-14 12:57:52.870 DEBUG 688 --- [http-nio-80-exec-6] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==>  Preparing: select coalesce (sum(views),0) from t_blog
+2020-07-14 12:57:52.870 DEBUG 688 --- [http-nio-80-exec-6] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==> Parameters: 
+2020-07-14 12:57:52.871 DEBUG 688 --- [http-nio-80-exec-6] c.pal.blog.dao.BlogDao.getBlogViewTotal  : <==      Total: 1
+2020-07-14 12:57:52.871 DEBUG 688 --- [http-nio-80-exec-6] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==>  Preparing: select count(*) from t_comment
+2020-07-14 12:57:52.871 DEBUG 688 --- [http-nio-80-exec-6] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==> Parameters: 
+2020-07-14 12:57:52.885 DEBUG 688 --- [http-nio-80-exec-6] c.p.b.dao.BlogDao.getBlogCommentTotal    : <==      Total: 1
+2020-07-14 12:57:52.886 DEBUG 688 --- [http-nio-80-exec-6] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==>  Preparing: select count(*) from t_message
+2020-07-14 12:57:52.886 DEBUG 688 --- [http-nio-80-exec-6] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==> Parameters: 
+2020-07-14 12:57:52.920 DEBUG 688 --- [http-nio-80-exec-6] c.p.b.dao.BlogDao.getBlogMessageTotal    : <==      Total: 1
+2020-07-14 12:57:52.921  INFO 688 --- [http-nio-80-exec-6] com.pal.blog.aspect.LogAspect            : Result : index :: blogMessage
+2020-07-14 12:58:00.456  INFO 688 --- [http-nio-80-exec-2] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/blog/63', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.blog', args=[63, {}]}
+2020-07-14 12:58:00.460 DEBUG 688 --- [http-nio-80-exec-2] c.pal.blog.dao.BlogDao.getDetailedBlog   : ==>  Preparing: select b.id bid,b.first_picture,b.flag,b.title,b.content,b.views,b.comment_count,b.update_time,b.commentabled,b.share_statement,b.appreciation, u.nickname,u.avatar,t.name from t_blog b,t_user u, t_type t where b.user_id = u.id and b.type_id = t.id and b.id = ?
+2020-07-14 12:58:00.461 DEBUG 688 --- [http-nio-80-exec-2] c.pal.blog.dao.BlogDao.getDetailedBlog   : ==> Parameters: 63(Long)
+2020-07-14 12:58:00.462 DEBUG 688 --- [http-nio-80-exec-2] c.pal.blog.dao.BlogDao.getDetailedBlog   : <==      Total: 1
+2020-07-14 12:58:00.493 DEBUG 688 --- [http-nio-80-exec-2] com.pal.blog.dao.BlogDao.updateViews     : ==>  Preparing: update t_blog b set b.views = b.views+1 where b.id = ?
+2020-07-14 12:58:00.493 DEBUG 688 --- [http-nio-80-exec-2] com.pal.blog.dao.BlogDao.updateViews     : ==> Parameters: 63(Long)
+2020-07-14 12:58:00.679 DEBUG 688 --- [http-nio-80-exec-2] com.pal.blog.dao.BlogDao.updateViews     : <==    Updates: 1
+2020-07-14 12:58:00.680 DEBUG 688 --- [http-nio-80-exec-2] c.p.b.dao.BlogDao.getCommentCountById    : ==>  Preparing: update t_blog b set b.comment_count = ( select count(*) from t_comment c where c.blog_id = ? and b.id = ? ) WHERE b.id = ?
+2020-07-14 12:58:00.680 DEBUG 688 --- [http-nio-80-exec-2] c.p.b.dao.BlogDao.getCommentCountById    : ==> Parameters: 63(Long), 63(Long), 63(Long)
+2020-07-14 12:58:00.681 DEBUG 688 --- [http-nio-80-exec-2] c.p.b.dao.BlogDao.getCommentCountById    : <==    Updates: 1
+2020-07-14 12:58:00.681  INFO 688 --- [http-nio-80-exec-2] com.pal.blog.aspect.LogAspect            : Result : blog
+2020-07-14 12:58:01.080  INFO 688 --- [http-nio-80-exec-2] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/footer/blogmessage', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.blogMessage', args=[{}]}
+2020-07-14 12:58:01.081 DEBUG 688 --- [http-nio-80-exec-2] com.pal.blog.dao.BlogDao.getBlogTotal    : ==>  Preparing: select count(*) from t_blog
+2020-07-14 12:58:01.081 DEBUG 688 --- [http-nio-80-exec-2] com.pal.blog.dao.BlogDao.getBlogTotal    : ==> Parameters: 
+2020-07-14 12:58:01.085 DEBUG 688 --- [http-nio-80-exec-2] com.pal.blog.dao.BlogDao.getBlogTotal    : <==      Total: 1
+2020-07-14 12:58:01.086 DEBUG 688 --- [http-nio-80-exec-2] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==>  Preparing: select coalesce (sum(views),0) from t_blog
+2020-07-14 12:58:01.086 DEBUG 688 --- [http-nio-80-exec-2] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==> Parameters: 
+2020-07-14 12:58:01.087 DEBUG 688 --- [http-nio-80-exec-2] c.pal.blog.dao.BlogDao.getBlogViewTotal  : <==      Total: 1
+2020-07-14 12:58:01.088 DEBUG 688 --- [http-nio-80-exec-2] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==>  Preparing: select count(*) from t_comment
+2020-07-14 12:58:01.088 DEBUG 688 --- [http-nio-80-exec-2] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==> Parameters: 
+2020-07-14 12:58:01.089 DEBUG 688 --- [http-nio-80-exec-2] c.p.b.dao.BlogDao.getBlogCommentTotal    : <==      Total: 1
+2020-07-14 12:58:01.090 DEBUG 688 --- [http-nio-80-exec-2] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==>  Preparing: select count(*) from t_message
+2020-07-14 12:58:01.090 DEBUG 688 --- [http-nio-80-exec-2] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==> Parameters: 
+2020-07-14 12:58:01.091 DEBUG 688 --- [http-nio-80-exec-2] c.p.b.dao.BlogDao.getBlogMessageTotal    : <==      Total: 1
+2020-07-14 12:58:01.091  INFO 688 --- [http-nio-80-exec-2] com.pal.blog.aspect.LogAspect            : Result : index :: blogMessage
+2020-07-14 12:58:01.239  INFO 688 --- [http-nio-80-exec-6] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/comments/63', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.CommentController.comments', args=[63, {}]}
+2020-07-14 12:58:01.243 DEBUG 688 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdParentIdNull       : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 12:58:01.244 DEBUG 688 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdParentIdNull       : ==> Parameters: 63(Long), -1(Long)
+2020-07-14 12:58:01.245 DEBUG 688 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdParentIdNull       : <==      Total: 1
+2020-07-14 12:58:01.245 DEBUG 688 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdParentIdNotNull    : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 12:58:01.246 DEBUG 688 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdParentIdNotNull    : ==> Parameters: 63(Long), 28(Long)
+2020-07-14 12:58:01.248 DEBUG 688 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdParentIdNotNull    : <==      Total: 1
+2020-07-14 12:58:01.252 DEBUG 688 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdAndReplayId        : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 12:58:01.252 DEBUG 688 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdAndReplayId        : ==> Parameters: 63(Long), 29(Long)
+2020-07-14 12:58:01.254 DEBUG 688 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdAndReplayId        : <==      Total: 1
+2020-07-14 12:58:01.255 DEBUG 688 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdAndReplayId        : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 12:58:01.256 DEBUG 688 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdAndReplayId        : ==> Parameters: 63(Long), 30(Long)
+2020-07-14 12:58:01.259 DEBUG 688 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdAndReplayId        : <==      Total: 1
+2020-07-14 12:58:01.260 DEBUG 688 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdAndReplayId        : ==>  Preparing: select * from t_comment c where c.blog_id = ? and c.parent_comment_id = ? order by c.create_time desc
+2020-07-14 12:58:01.260 DEBUG 688 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdAndReplayId        : ==> Parameters: 63(Long), 31(Long)
+2020-07-14 12:58:01.261 DEBUG 688 --- [http-nio-80-exec-6] c.p.b.d.C.findByBlogIdAndReplayId        : <==      Total: 0
+2020-07-14 12:58:01.261  INFO 688 --- [http-nio-80-exec-6] com.pal.blog.aspect.LogAspect            : Result : blog :: commentList
+2020-07-14 17:33:28.080  INFO 1308 --- [restartedMain] com.pal.blog.BlogApplication             : Starting BlogApplication on LAPTOP-3TMQ3A72 with PID 1308 (D:\panal\jetbrains\apps\IDEA-U\workspace\blog-mybatis\target\classes started by panal in D:\panal\jetbrains\apps\IDEA-U\workspace\blog-mybatis)
+2020-07-14 17:33:28.087 DEBUG 1308 --- [restartedMain] com.pal.blog.BlogApplication             : Running with Spring Boot v2.2.8.RELEASE, Spring v5.2.7.RELEASE
+2020-07-14 17:33:28.087  INFO 1308 --- [restartedMain] com.pal.blog.BlogApplication             : The following profiles are active: dev
+2020-07-14 17:33:28.179  INFO 1308 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-07-14 17:33:28.179  INFO 1308 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-07-14 17:33:29.778  INFO 1308 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+2020-07-14 17:33:29.787  INFO 1308 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-07-14 17:33:29.788  INFO 1308 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.36]
+2020-07-14 17:33:29.898  INFO 1308 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-07-14 17:33:29.898  INFO 1308 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1719 ms
+2020-07-14 17:33:30.803  INFO 1308 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-07-14 17:33:30.886  INFO 1308 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-07-14 17:33:31.249  INFO 1308 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-07-14 17:33:31.318  INFO 1308 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path ''
+2020-07-14 17:33:31.321  INFO 1308 --- [restartedMain] com.pal.blog.BlogApplication             : Started BlogApplication in 4.03 seconds (JVM running for 5.584)
+2020-07-14 17:33:34.271  INFO 1308 --- [http-nio-80-exec-1] o.apache.tomcat.util.http.parser.Cookie  : A cookie header was received [1594595971,1594707651; Hm_lpvt_6b1eb02bacb648d682681dc81149e144=1594707703; JSESSIONID=E9F0AF9118DBB2B7AF24A4B1A858AC05] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+2020-07-14 17:33:34.275  INFO 1308 --- [http-nio-80-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-14 17:33:34.275  INFO 1308 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-07-14 17:33:34.282  INFO 1308 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
+2020-07-14 17:33:34.327  INFO 1308 --- [http-nio-80-exec-1] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/', ip='127.0.0.1', classMethod='com.pal.blog.controller.IndexController.index', args=[{}, 1, {}]}
+2020-07-14 17:33:34.369  INFO 1308 --- [http-nio-80-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-07-14 17:33:34.620  INFO 1308 --- [http-nio-80-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-07-14 17:33:34.625 DEBUG 1308 --- [http-nio-80-exec-1] c.p.b.d.BlogDao.getFirstPageBlog_COUNT   : ==>  Preparing: SELECT count(0) FROM t_blog b, t_type t, t_user u WHERE b.type_id = t.id AND u.id = b.user_id
+2020-07-14 17:33:34.641 DEBUG 1308 --- [http-nio-80-exec-1] c.p.b.d.BlogDao.getFirstPageBlog_COUNT   : ==> Parameters: 
+2020-07-14 17:33:34.729 DEBUG 1308 --- [http-nio-80-exec-1] c.p.b.d.BlogDao.getFirstPageBlog_COUNT   : <==      Total: 1
+2020-07-14 17:33:34.734 DEBUG 1308 --- [http-nio-80-exec-1] c.pal.blog.dao.BlogDao.getFirstPageBlog  : ==>  Preparing: select b.id,b.title,b.first_picture, b.views, b.comment_count,b.create_time,b.update_time,b.description, t.name , u.nickname, u.avatar from t_blog b, t_type t,t_user u where b.type_id = t.id and u.id = b.user_id order by b.create_time desc LIMIT ?
+2020-07-14 17:33:34.734 DEBUG 1308 --- [http-nio-80-exec-1] c.pal.blog.dao.BlogDao.getFirstPageBlog  : ==> Parameters: 10(Integer)
+2020-07-14 17:33:34.738 DEBUG 1308 --- [http-nio-80-exec-1] c.pal.blog.dao.BlogDao.getFirstPageBlog  : <==      Total: 1
+2020-07-14 17:33:34.740 DEBUG 1308 --- [http-nio-80-exec-1] c.p.b.dao.BlogDao.getAllRecommendBlog    : ==>  Preparing: select * from t_blog where t_blog.recommend = true order by t_blog.create_time desc limit 4;
+2020-07-14 17:33:34.740 DEBUG 1308 --- [http-nio-80-exec-1] c.p.b.dao.BlogDao.getAllRecommendBlog    : ==> Parameters: 
+2020-07-14 17:33:34.742 DEBUG 1308 --- [http-nio-80-exec-1] c.p.b.dao.BlogDao.getAllRecommendBlog    : <==      Total: 1
+2020-07-14 17:33:34.744  INFO 1308 --- [http-nio-80-exec-1] com.pal.blog.aspect.LogAspect            : Result : index
+2020-07-14 17:33:35.234  INFO 1308 --- [http-nio-80-exec-5] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/footer/blogmessage', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.blogMessage', args=[{}]}
+2020-07-14 17:33:35.234 DEBUG 1308 --- [http-nio-80-exec-5] com.pal.blog.dao.BlogDao.getBlogTotal    : ==>  Preparing: select count(*) from t_blog
+2020-07-14 17:33:35.235 DEBUG 1308 --- [http-nio-80-exec-5] com.pal.blog.dao.BlogDao.getBlogTotal    : ==> Parameters: 
+2020-07-14 17:33:35.239 DEBUG 1308 --- [http-nio-80-exec-5] com.pal.blog.dao.BlogDao.getBlogTotal    : <==      Total: 1
+2020-07-14 17:33:35.240 DEBUG 1308 --- [http-nio-80-exec-5] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==>  Preparing: select coalesce (sum(views),0) from t_blog
+2020-07-14 17:33:35.241 DEBUG 1308 --- [http-nio-80-exec-5] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==> Parameters: 
+2020-07-14 17:33:35.242 DEBUG 1308 --- [http-nio-80-exec-5] c.pal.blog.dao.BlogDao.getBlogViewTotal  : <==      Total: 1
+2020-07-14 17:33:35.242 DEBUG 1308 --- [http-nio-80-exec-5] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==>  Preparing: select count(*) from t_comment
+2020-07-14 17:33:35.243 DEBUG 1308 --- [http-nio-80-exec-5] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==> Parameters: 
+2020-07-14 17:33:35.285 DEBUG 1308 --- [http-nio-80-exec-5] c.p.b.dao.BlogDao.getBlogCommentTotal    : <==      Total: 1
+2020-07-14 17:33:35.286 DEBUG 1308 --- [http-nio-80-exec-5] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==>  Preparing: select count(*) from t_message
+2020-07-14 17:33:35.287 DEBUG 1308 --- [http-nio-80-exec-5] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==> Parameters: 
+2020-07-14 17:33:35.302 DEBUG 1308 --- [http-nio-80-exec-5] c.p.b.dao.BlogDao.getBlogMessageTotal    : <==      Total: 1
+2020-07-14 17:33:35.304  INFO 1308 --- [http-nio-80-exec-5] com.pal.blog.aspect.LogAspect            : Result : index :: blogMessage
+2020-07-14 17:34:24.829  INFO 1308 --- [http-nio-80-exec-1] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/types/-1', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.TypeShowController.types', args=[1, -1, {}]}
+2020-07-14 17:34:24.839 DEBUG 1308 --- [http-nio-80-exec-1] c.p.blog.dao.TypeDao.getAllTypeAndBlog   : ==>  Preparing: select t.id tid, t.name, b.id bid, b.title,b.type_id from t_type t,t_blog b where t.id = b.type_id
+2020-07-14 17:34:24.839 DEBUG 1308 --- [http-nio-80-exec-1] c.p.blog.dao.TypeDao.getAllTypeAndBlog   : ==> Parameters: 
+2020-07-14 17:34:24.843 DEBUG 1308 --- [http-nio-80-exec-1] c.p.blog.dao.TypeDao.getAllTypeAndBlog   : <==      Total: 1
+2020-07-14 17:34:25.176 DEBUG 1308 --- [http-nio-80-exec-1] com.pal.blog.dao.BlogDao.getByTypeId     : ==>  Preparing: select b.id,b.title,b.first_picture, b.views, b.comment_count, b.update_time, b.description,t.name ,u.nickname, u.avatar from t_blog b, t_type t,t_user u where b.type_id = t.id and u.id = b.user_id and b.type_id = ? order by b.update_time desc
+2020-07-14 17:34:25.177 DEBUG 1308 --- [http-nio-80-exec-1] com.pal.blog.dao.BlogDao.getByTypeId     : ==> Parameters: 61(Long)
+2020-07-14 17:34:25.195 DEBUG 1308 --- [http-nio-80-exec-1] com.pal.blog.dao.BlogDao.getByTypeId     : <==      Total: 1
+2020-07-14 17:34:25.195  INFO 1308 --- [http-nio-80-exec-1] com.pal.blog.aspect.LogAspect            : Result : types
+2020-07-14 17:34:25.280  INFO 1308 --- [http-nio-80-exec-6] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/footer/blogmessage', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.blogMessage', args=[{}]}
+2020-07-14 17:34:25.281 DEBUG 1308 --- [http-nio-80-exec-6] com.pal.blog.dao.BlogDao.getBlogTotal    : ==>  Preparing: select count(*) from t_blog
+2020-07-14 17:34:25.281 DEBUG 1308 --- [http-nio-80-exec-6] com.pal.blog.dao.BlogDao.getBlogTotal    : ==> Parameters: 
+2020-07-14 17:34:25.310 DEBUG 1308 --- [http-nio-80-exec-6] com.pal.blog.dao.BlogDao.getBlogTotal    : <==      Total: 1
+2020-07-14 17:34:25.310 DEBUG 1308 --- [http-nio-80-exec-6] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==>  Preparing: select coalesce (sum(views),0) from t_blog
+2020-07-14 17:34:25.311 DEBUG 1308 --- [http-nio-80-exec-6] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==> Parameters: 
+2020-07-14 17:34:25.312 DEBUG 1308 --- [http-nio-80-exec-6] c.pal.blog.dao.BlogDao.getBlogViewTotal  : <==      Total: 1
+2020-07-14 17:34:25.312 DEBUG 1308 --- [http-nio-80-exec-6] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==>  Preparing: select count(*) from t_comment
+2020-07-14 17:34:25.312 DEBUG 1308 --- [http-nio-80-exec-6] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==> Parameters: 
+2020-07-14 17:34:25.313 DEBUG 1308 --- [http-nio-80-exec-6] c.p.b.dao.BlogDao.getBlogCommentTotal    : <==      Total: 1
+2020-07-14 17:34:25.314 DEBUG 1308 --- [http-nio-80-exec-6] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==>  Preparing: select count(*) from t_message
+2020-07-14 17:34:25.314 DEBUG 1308 --- [http-nio-80-exec-6] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==> Parameters: 
+2020-07-14 17:34:25.315 DEBUG 1308 --- [http-nio-80-exec-6] c.p.b.dao.BlogDao.getBlogMessageTotal    : <==      Total: 1
+2020-07-14 17:34:25.315  INFO 1308 --- [http-nio-80-exec-6] com.pal.blog.aspect.LogAspect            : Result : index :: blogMessage
+2020-07-14 17:34:29.480  INFO 1308 --- [http-nio-80-exec-5] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/types/61', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.TypeShowController.types', args=[1, 61, {}]}
+2020-07-14 17:34:29.481 DEBUG 1308 --- [http-nio-80-exec-5] c.p.blog.dao.TypeDao.getAllTypeAndBlog   : ==>  Preparing: select t.id tid, t.name, b.id bid, b.title,b.type_id from t_type t,t_blog b where t.id = b.type_id
+2020-07-14 17:34:29.482 DEBUG 1308 --- [http-nio-80-exec-5] c.p.blog.dao.TypeDao.getAllTypeAndBlog   : ==> Parameters: 
+2020-07-14 17:34:29.483 DEBUG 1308 --- [http-nio-80-exec-5] c.p.blog.dao.TypeDao.getAllTypeAndBlog   : <==      Total: 1
+2020-07-14 17:34:29.485 DEBUG 1308 --- [http-nio-80-exec-5] com.pal.blog.dao.BlogDao.getByTypeId     : ==>  Preparing: select b.id,b.title,b.first_picture, b.views, b.comment_count, b.update_time, b.description,t.name ,u.nickname, u.avatar from t_blog b, t_type t,t_user u where b.type_id = t.id and u.id = b.user_id and b.type_id = ? order by b.update_time desc
+2020-07-14 17:34:29.486 DEBUG 1308 --- [http-nio-80-exec-5] com.pal.blog.dao.BlogDao.getByTypeId     : ==> Parameters: 61(Long)
+2020-07-14 17:34:29.488 DEBUG 1308 --- [http-nio-80-exec-5] com.pal.blog.dao.BlogDao.getByTypeId     : <==      Total: 1
+2020-07-14 17:34:29.488  INFO 1308 --- [http-nio-80-exec-5] com.pal.blog.aspect.LogAspect            : Result : types
+2020-07-14 17:34:29.547  INFO 1308 --- [http-nio-80-exec-4] com.pal.blog.aspect.LogAspect            : Request : {url='http://localhost/footer/blogmessage', ip='0:0:0:0:0:0:0:1', classMethod='com.pal.blog.controller.IndexController.blogMessage', args=[{}]}
+2020-07-14 17:34:29.547 DEBUG 1308 --- [http-nio-80-exec-4] com.pal.blog.dao.BlogDao.getBlogTotal    : ==>  Preparing: select count(*) from t_blog
+2020-07-14 17:34:29.548 DEBUG 1308 --- [http-nio-80-exec-4] com.pal.blog.dao.BlogDao.getBlogTotal    : ==> Parameters: 
+2020-07-14 17:34:29.550 DEBUG 1308 --- [http-nio-80-exec-4] com.pal.blog.dao.BlogDao.getBlogTotal    : <==      Total: 1
+2020-07-14 17:34:29.552 DEBUG 1308 --- [http-nio-80-exec-4] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==>  Preparing: select coalesce (sum(views),0) from t_blog
+2020-07-14 17:34:29.553 DEBUG 1308 --- [http-nio-80-exec-4] c.pal.blog.dao.BlogDao.getBlogViewTotal  : ==> Parameters: 
+2020-07-14 17:34:29.554 DEBUG 1308 --- [http-nio-80-exec-4] c.pal.blog.dao.BlogDao.getBlogViewTotal  : <==      Total: 1
+2020-07-14 17:34:29.554 DEBUG 1308 --- [http-nio-80-exec-4] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==>  Preparing: select count(*) from t_comment
+2020-07-14 17:34:29.555 DEBUG 1308 --- [http-nio-80-exec-4] c.p.b.dao.BlogDao.getBlogCommentTotal    : ==> Parameters: 
+2020-07-14 17:34:29.556 DEBUG 1308 --- [http-nio-80-exec-4] c.p.b.dao.BlogDao.getBlogCommentTotal    : <==      Total: 1
+2020-07-14 17:34:29.557 DEBUG 1308 --- [http-nio-80-exec-4] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==>  Preparing: select count(*) from t_message
+2020-07-14 17:34:29.557 DEBUG 1308 --- [http-nio-80-exec-4] c.p.b.dao.BlogDao.getBlogMessageTotal    : ==> Parameters: 
+2020-07-14 17:34:29.558 DEBUG 1308 --- [http-nio-80-exec-4] c.p.b.dao.BlogDao.getBlogMessageTotal    : <==      Total: 1
+2020-07-14 17:34:29.558  INFO 1308 --- [http-nio-80-exec-4] com.pal.blog.aspect.LogAspect            : Result : index :: blogMessage

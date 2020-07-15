@@ -1,9 +1,11 @@
 package com.pal.blog.service.impl;
 
+import com.pal.blog.NotFoundException;
 import com.pal.blog.dao.BlogDao;
 import com.pal.blog.entity.Blog;
 import com.pal.blog.queryvo.*;
 import com.pal.blog.service.BlogService;
+import com.pal.blog.utils.MarkdownUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -102,4 +104,25 @@ public class BlogServiceImpl implements BlogService {
     public Integer getBlogMessageTotal() {
         return blogDao.getBlogMessageTotal();
     }
+
+    @Override
+    public DetailedBlog getDetailedBlog(Long id) {
+        DetailedBlog detailedBlog = blogDao.getDetailedBlog(id);
+        if(detailedBlog == null){
+            throw new NotFoundException("该博客不存在");
+        }
+        String content = detailedBlog.getContent();
+        detailedBlog.setContent(MarkdownUtils.markdownToHtmlExtensions(content));
+        //文章访问数量自增
+        blogDao.updateViews(id);
+        //文章评论数量更新
+        blogDao.getCommentCountById(id);
+        return detailedBlog;
+    }
+    //分类页面查询
+    @Override
+    public List<FirstPageBlog> getByTypeId(Long typeId) {
+        return blogDao.getByTypeId(typeId);
+    }
+
 }

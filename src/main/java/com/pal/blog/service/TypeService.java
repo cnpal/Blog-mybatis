@@ -22,4 +22,6 @@ public interface TypeService {
 
     //删除分类
     void deleteType(Long id);
+    //查询所有分类
+    List<Type>getAllTypeAndBlog();
 }

@@ -107,16 +107,60 @@
     </select>
 
     <!--统计博客信息-->
-    <select id="getBlogTotal" resultType="Integer">
+    <select id="getBlogTotal" resultType="java.lang.Integer">
         select count(*) from t_blog
     </select>
-    <select id="getBlogViewTotal" resultType="Integer">
+    <select id="getBlogViewTotal" resultType="java.lang.Integer">
         select coalesce (sum(views),0) from t_blog
     </select>
-    <select id="getBlogCommentTotal" resultType="Integer">
+    <select id="getBlogCommentTotal" resultType="java.lang.Integer">
         select count(*) from t_comment
     </select>
-    <select id="getBlogMessageTotal" resultType="Integer">
+    <select id="getBlogMessageTotal" resultType="java.lang.Integer">
         select count(*) from t_message
+    </select>
+
+
+    <resultMap id="detailedBlog" type="com.pal.blog.queryvo.DetailedBlog">
+        <id property="id" column="bid"/>
+        <result property="firstPicture" column="first_picture"/>
+        <result property="flag" column="flag"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="typeName" column="name"/>
+        <result property="views" column="views"/>
+        <result property="commentCount" column="comment_count"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="commentabled" column="commentabled"/>
+        <result property="shareStatement" column="share_statement"/>
+        <result property="appreciation" column="appreciation"/>
+        <result property="nickname" column="nickname"/>
+        <result property="avatar" column="avatar"/>
+    </resultMap>
+
+    <!--博客详情查询-->
+    <select id="getDetailedBlog" resultMap="detailedBlog">
+        select b.id bid,b.first_picture,b.flag,b.title,b.content,b.views,b.comment_count,b.update_time,b.commentabled,b.share_statement,b.appreciation, u.nickname,u.avatar,t.name
+        from t_blog b,t_user u, t_type t
+        where b.user_id = u.id and b.type_id = t.id and b.id = #{id}
+    </select>
+
+    <!--文章访问自增-->
+    <update id="updateViews" parameterType="com.pal.blog.entity.Blog">
+        update t_blog b set b.views = b.views+1 where b.id = #{id}
+    </update>
+
+    <!--查询出文章评论数量并更新-->
+    <update id="getCommentCountById" parameterType="com.pal.blog.entity.Blog">
+        update t_blog b set b.comment_count = (
+            select count(*) from t_comment c where c.blog_id = #{id} and b.id = #{id}
+        ) WHERE b.id = #{id}
+    </update>
+
+    <!--根据TypeId查询博客列表，显示在分类页面-->
+    <select id="getByTypeId" resultMap="firstPageBlog">
+        select b.id,b.title,b.first_picture, b.views, b.comment_count, b.update_time, b.description,t.name ,u.nickname, u.avatar
+        from t_blog b, t_type t,t_user u
+        where b.type_id = t.id and u.id = b.user_id and b.type_id = #{typeId} order by b.update_time desc
     </select>
 </mapper>

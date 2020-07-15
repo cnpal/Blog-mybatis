@@ -15,8 +15,10 @@ public interface BlogDao {
 
     //查询文章管理列表
     List<BlogQuery> getAllBlogQuery();
+
     //删除博客
     void deleteBlog(Long id);
+
     //编辑博客
     int updateBlog(ShowBlog showBlog);
 
@@ -46,4 +48,17 @@ public interface BlogDao {
 
     //统计留言总数
     Integer getBlogMessageTotal();
+
+    //查询博客详情
+    DetailedBlog getDetailedBlog(Long id);
+
+    //文章访问更新
+    int updateViews(Long id);
+
+    //根据博客id查询出评论数量
+    int getCommentCountById(Long id);
+
+    //根据TypeId查询博客列表，显示在分类页面
+    List<FirstPageBlog> getByTypeId(Long typeId);
 }
+
